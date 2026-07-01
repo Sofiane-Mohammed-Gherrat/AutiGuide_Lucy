@@ -1,7 +1,7 @@
 import numpy as np
 from typing import List, Dict, Any
 from sklearn.metrics.pairwise import cosine_similarity
-from preprocessing import preprocess
+from .preprocessing import preprocess
 
 def find_best_matches_for_segments(
     flattened_segments: List[Dict[str, Any]],

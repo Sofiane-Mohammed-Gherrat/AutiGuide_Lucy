@@ -1,14 +1,23 @@
 import json
-from matcher import find_best_matches_for_segments
-from llm import llm_response
+from .matcher import find_best_matches_for_segments
+from .llm import llm_response
 import pprint
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-from preprocessing import preprocess
+from .preprocessing import preprocess
+
+from pathlib import Path
+import json
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+KNOWLEDGE_FILE = BASE_DIR / "data" / "Knowledge_team.json"
+
 
 # 1. Load Knowledge Base
-with open("../data/Knowledge_team.json", "r") as f:
+
+with KNOWLEDGE_FILE.open("r", encoding="utf-8") as f:
     KNOWLEDGE = json.load(f)
+
 
 # 2. Process Knowledge Base Documents
 

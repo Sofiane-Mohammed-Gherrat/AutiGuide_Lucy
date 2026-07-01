@@ -1,4 +1,4 @@
-from pydantic_logic import CaregiverResponse
+from .pydantic_logic import CaregiverResponse
 from typing import Dict, List
 from openai import OpenAI
 
@@ -32,29 +32,24 @@ def format_response(response) -> CaregiverResponse | List[Dict[str, str]]:
     return flattened_data
 
 
-def llm_response(query_text) -> str | List[Dict[str, str]]:
+def llm_response(query_text: str) -> List[Dict[str, str]]:
+    try:
+        response = client.beta.chat.completions.parse(
+            model="model-identifier",
+            messages=[
+                {"role": "system", "content": "You are classifying a caregiver question about autism."},
+                {"role": "user", "content": query_text},
+            ],
+            extra_body={"thinking": {"type": "enabled"}},
+            response_format=CaregiverResponse,
+            temperature=0.2,
+        )
+    except Exception as e:
+        print(f"[llm_response] LM Studio call failed: {e}")
+        return []
 
-    response: CaregiverResponse = client.beta.chat.completions.parse(
-        model="model-identifier", # LM studio will use whatever model is loaded
-        messages=[
-            {
-            "role": "system", 
-            "content": "You are classifying a caregiver question about autism."
-            },
-            {
-            "role": "user", 
-            "content": query_text
-            }
-        ],
-        extra_body={
-            "thinking": {
-                "type": "enabled"  # Use "enabled" to turn it back on
-            }
-        },
-        response_format=CaregiverResponse, # Pass the class here!
-        temperature=0.2 # Lower temperature is recommended for data extraction
-    )
+    parsed = response.choices[0].message.parsed
+    if parsed is None or not parsed.categorized_questions:
+        return []
 
-    formated_answer = format_response(response.choices[0].message.parsed)
-
-    return formated_answer
+    return format_response(parsed)

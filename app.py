@@ -14,6 +14,7 @@ from autiguide.chatbot import get_autiguide_response
 from autiguide.responses import build_response
 from knowledge_base import knowledge_base
 
+from lucy.nurse_mode import get_nurse_response
 
 #create the Flask web application
 app = Flask(__name__)
@@ -27,6 +28,10 @@ config.apply_to(app)
 def home():
     #load templates/index.html
     return render_template("index.html")
+
+@app.route("/nurse")
+def nurse():
+    return render_template("nurse.html")
 
 
 #receive one user message and return one chatbot response
@@ -92,6 +97,29 @@ def health():
         "knowledge_base_items": len(knowledge_base),
         "categories": sorted(categories),
     })
+
+@app.route("/nurse_chat", methods=["POST"])
+def nurse_chat():
+    data = request.get_json(silent=True) or {}
+    message = data.get("message", "")
+
+    if not isinstance(message, str) or not message.strip():
+        return jsonify({"answer": "Please type a question.", "grounded": False}), 400
+
+    if len(message) > config.MAX_MESSAGE_LENGTH:
+        return jsonify({
+            "answer": f"Please shorten the message to {config.MAX_MESSAGE_LENGTH} characters or fewer.",
+            "grounded": False,
+        }), 400
+
+    history = session.get("nurse_history", [])
+    result = get_nurse_response(message.strip(), history=history)
+
+    history.append({"role": "user", "content": message.strip()})
+    history.append({"role": "assistant", "content": result["answer"]})
+    session["nurse_history"] = history[-10:]  # keep last 10 turns
+
+    return jsonify(result)
 
 
 #run the Flask development server when app.py is opened directly

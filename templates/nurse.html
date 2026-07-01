@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AutiGuide — Nurse Mode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+    <header>
+        <a href="/">&larr; Back to AutiGuide</a>
+        <h1>Nurse Mode</h1>
+        <p class="disclaimer">
+        Nurse Mode uses AI to rephrase our knowledge base in a conversational way.
+        It is not medical advice — always consult a professional for urgent concerns.
+        </p>
+    </header>
+
+    <main>
+        <div id="chat-window"></div>
+
+        <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask Nurse Mode a question..." autocomplete="off" />
+        <button type="submit">Send</button>
+        </form>
+    </main>
+
+    <script>
+        const chatWindow = document.getElementById("chat-window");
+        const chatForm = document.getElementById("chat-form");
+        const chatInput = document.getElementById("chat-input");
+
+        function addMessage(text, sender) {
+        const bubble = document.createElement("div");
+        bubble.className = `bubble ${sender}`;
+        bubble.textContent = text;
+        chatWindow.appendChild(bubble);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        addMessage(message, "user");
+        chatInput.value = "";
+
+        const typing = document.createElement("div");
+        typing.className = "bubble nurse typing";
+        typing.textContent = "Nurse is typing...";
+        chatWindow.appendChild(typing);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        try {
+            const res = await fetch("/nurse_chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message }),
+            });
+            const data = await res.json();
+            typing.remove();
+            addMessage(data.answer, "nurse");
+        } catch (err) {
+            typing.remove();
+            addMessage("Something went wrong reaching Nurse Mode. Is LM Studio running?", "nurse");
+        }
+        });
+    </script>
+</body>
+</html>
