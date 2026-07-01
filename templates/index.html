@@ -1,0 +1,633 @@
+<!-- tell the browser that this file uses HTML5 -->
+<!DOCTYPE html>
+<!-- start the HTML document and set the page language to English -->
+<html lang="en">
+<!-- the head stores page information and linked files -->
+<head>
+    <!-- allow the page to display letters and symbols correctly -->
+    <meta charset="UTF-8">
+    <!-- make the layout resize correctly on phones and tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- short description used by browsers and search engines -->
+    <meta
+        name="description"
+        content="AutiGuide provides verified retrieval-based support for caregivers of children with Autism Spectrum Disorder."
+    >
+    <!-- text shown in the browser tab -->
+    <title>AutiGuide</title>
+
+    <!-- connect this page to the CSS file stored in the Flask static folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<!-- start the visible page content -->
+<body>
+    <!-- main application container that holds the sidebar and chat area -->
+    <div class="app-shell">
+
+        <!-- dark overlay used behind the sidebar on smaller screens -->
+        <button
+            id="sidebar-overlay"
+            class="sidebar-overlay"
+            aria-label="Close navigation"
+            onclick="closeSidebar()"
+        ></button>
+
+        <!-- left sidebar containing guided support buttons and the notice -->
+        <aside id="sidebar" class="sidebar">
+            <!-- application logo and name -->
+            <div class="brand">
+                <!-- simple letter logo; aria-hidden prevents screen readers reading it twice -->
+                <div class="brand-logo" aria-hidden="true">A</div>
+
+                <div class="brand-copy">
+                    <h1>AutiGuide</h1>
+                    <p>Caregiver support</p>
+                </div>
+            </div>
+
+            <!-- scrollable part of the sidebar -->
+            <div class="sidebar-scroll">
+                <!-- guided support section -->
+                <section class="sidebar-section">
+                    <p class="section-label">Guided support</p>
+
+                    <!-- list of buttons that start the five guided conversations -->
+                    <div class="guided-list">
+                        <!-- start the meltdown guide when this button is clicked -->
+<button class="guided-item" onclick="quickQuestion('Start meltdown guide')">
+                            <span class="guided-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v18M3 12h18"></path>
+        <path d="m5.6 5.6 12.8 12.8M18.4 5.6 5.6 18.4"></path>
+    </svg></span>
+                            <span class="guided-copy">
+                                <strong>Meltdown</strong>
+                                <small>Step-by-step support</small>
+                            </span>
+                        </button>
+
+                        <!-- start the aggression guide when this button is clicked -->
+<button class="guided-item" onclick="quickQuestion('Start aggression guide')">
+                            <span class="guided-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3 4 7v5c0 5 3.3 8 8 9 4.7-1 8-4 8-9V7l-8-4Z"></path>
+        <path d="M9 12h6M12 9v6"></path>
+    </svg></span>
+                            <span class="guided-copy">
+                                <strong>Aggression</strong>
+                                <small>Safety-first guidance</small>
+                            </span>
+                        </button>
+
+                        <!-- start the picky eating guide when this button is clicked -->
+<button class="guided-item" onclick="quickQuestion('Start picky eating guide')">
+                            <span class="guided-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 3v8M10 3v8M7 7h3M8.5 11v10M16 3c2 3 2 7 0 10v8"></path>
+    </svg></span>
+                            <span class="guided-copy">
+                                <strong>Picky eating</strong>
+                                <small>Food and routine support</small>
+                            </span>
+                        </button>
+
+                        <!-- start the school support guide when this button is clicked -->
+<button class="guided-item" onclick="quickQuestion('Start school support guide')">
+                            <span class="guided-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m3 10 9-5 9 5-9 5-9-5Z"></path>
+        <path d="M7 12.5V17c3 2 7 2 10 0v-4.5M21 10v6"></path>
+    </svg></span>
+                            <span class="guided-copy">
+                                <strong>School support</strong>
+                                <small>Learning and communication</small>
+                            </span>
+                        </button>
+
+                        <!-- start the Malaysia resources guide when this button is clicked -->
+<button class="guided-item" onclick="quickQuestion('Start resource guide')">
+                            <span class="guided-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 20V8l8-5 8 5v12"></path>
+        <path d="M8 20v-6h8v6M9 10h6"></path>
+    </svg></span>
+                            <span class="guided-copy">
+                                <strong>Malaysia resources</strong>
+                                <small>Services and next steps</small>
+                            </span>
+                        </button>
+                    </div>
+                </section>
+</div>
+
+            <!-- fixed bottom part of the sidebar -->
+            <div class="sidebar-footer">
+                <!-- important message explaining the limits of the chatbot -->
+                <div class="notice-card">
+                    <span class="notice-mark" aria-hidden="true">i</span>
+                    <p>
+                        <strong>General information only</strong>
+                        AutiGuide does not replace doctors, therapists or emergency services.
+                    </p>
+                </div>
+
+                <!-- clear the Flask session and begin a new conversation -->
+                <button class="new-chat-button" onclick="resetChat()">
+                    New conversation
+                </button>
+            </div>
+        </aside>
+
+        <!-- main area containing the top bar and chatbot -->
+        <main class="main-panel">
+            <!-- top bar displaying the assistant name and online status -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <!-- mobile menu button used to open the sidebar -->
+                    <button
+                        class="mobile-menu-button"
+                        onclick="openSidebar()"
+                        aria-label="Open navigation"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <!-- chatbot title and description -->
+                    <div class="conversation-info">
+                        <div class="conversation-title">
+                            <!-- green circle showing that the application is available -->
+                            <span class="status-dot" aria-hidden="true"></span>
+                            <h2>AutiGuide Assistant</h2>
+                        </div>
+
+                        <p>Verified answers from a prepared knowledge base</p>
+                    </div>
+                </div>
+</header>
+
+            <!-- chatbot layout: messages, suggestions and typing area -->
+            <section class="chat-layout">
+                <!-- all user and chatbot messages are added inside this box -->
+                <div id="chat-box" class="chat-box" aria-live="polite">
+                    <!-- default welcome message shown when the page first opens -->
+                    <div class="message-row bot-row">
+                        <div class="avatar bot-avatar" aria-hidden="true">A</div>
+
+                        <article class="message bot-message">
+                            <!-- labels showing the response category and risk level -->
+                            <div class="message-meta">
+                                <span class="category">AutiGuide</span>
+                                <span class="risk risk-low">General</span>
+                            </div>
+
+                            <p>
+                                Hello. I provide simple, verified information for parents and caregivers
+                                of children with Autism Spectrum Disorder.
+                            </p>
+
+                            <p class="secondary-text">
+                                Ask a question in your own words or choose one of the suggestions below.
+                                I will tell you clearly when a reliable answer is not available.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- optional questions that the user can click instead of typing -->
+                <div class="suggestions-block">
+                    <!-- welcome heading hidden after the first message is sent -->
+                    <p id="welcome-prompt" class="welcome-prompt">
+                        How can I support you today?
+                    </p>
+
+                    <div class="suggestions-heading">
+                        <span>Suggested questions</span>
+                        <small>Optional</small>
+                    </div>
+
+                    <!-- JavaScript replaces these buttons after every chatbot response -->
+                    <div id="suggestions-area" class="suggestions-area">
+                        <button onclick="quickQuestion('Start meltdown guide')">
+                            Start meltdown guide
+                        </button>
+
+                        <button onclick="quickQuestion('My child bites others at school')">
+                            Aggression at school
+                        </button>
+
+                        <button onclick="quickQuestion('What is ABA therapy?')">
+                            ABA therapy
+                        </button>
+
+                        <button onclick="quickQuestion('My child is a picky eater')">
+                            Picky eating
+                        </button>
+
+                        <button onclick="quickQuestion('Where can I get autism support in Malaysia?')">
+                            Malaysia support
+                        </button>
+                    </div>
+                </div>
+
+                <!-- typing section at the bottom of the chatbot -->
+                <div class="composer-block">
+                    <!-- rounded container holding the text box and send button -->
+                    <div class="composer">
+                        <!-- text area where the user writes a question -->
+                        <textarea
+                            id="user-input"
+                            rows="1"
+                            maxlength="800"
+                            placeholder="Ask an autism-caregiving question..."
+                            aria-label="Message AutiGuide"
+                            autocomplete="off"
+                        ></textarea>
+
+                        <!-- send the current question to the Flask /chat route -->
+                        <button
+                            id="send-button"
+                            class="send-button"
+                            onclick="sendMessage()"
+                            aria-label="Send message"
+                        >
+                            <span aria-hidden="true">↑</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JavaScript controls messages, suggestions, requests and mobile navigation -->
+    <script>
+        //get the main box where all chat messages are displayed
+        const chatBox = document.getElementById("chat-box");
+        //get the text area used to enter a question
+        const userInput = document.getElementById("user-input");
+        //get the area that displays optional suggestion buttons
+        const suggestionsArea = document.getElementById("suggestions-area");
+        //get the send button so it can be enabled or disabled
+        const sendButton = document.getElementById("send-button");
+        //get the sidebar used on desktop and mobile screens
+        const sidebar = document.getElementById("sidebar");
+        //get the mobile overlay shown behind the open sidebar
+        const sidebarOverlay = document.getElementById("sidebar-overlay");
+        //get the welcome heading so it can be hidden after the first message
+        const welcomePrompt = document.getElementById("welcome-prompt");
+
+        //store whether the chatbot is currently waiting for a server response
+        let requestInProgress = false;
+
+        //convert text into safe HTML so user input cannot insert HTML elements
+        function escapeHTML(text) {
+            //create a temporary element for safely converting the text
+            const div = document.createElement("div");
+            div.innerText = String(text ?? "");
+            return div.innerHTML;
+        }
+
+        //choose the correct CSS class for each response risk level
+        function riskClass(riskLevel) {
+            //use low risk when the server does not provide a risk value
+            const level = String(riskLevel || "low").toLowerCase();
+
+            if (level === "emergency") return "risk-emergency";
+            if (level === "medical" || level === "high") return "risk-high";
+            if (level === "medium" || level === "guided") return "risk-medium";
+
+            return "risk-low";
+        }
+
+        //format the risk value before displaying it inside the response label
+        function formatRiskText(riskLevel) {
+            if (!riskLevel) return "General";
+            if (riskLevel === "guided") return "Guided";
+
+            return riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1);
+        }
+
+        //create and display one user or chatbot message
+        function addMessage(sender, data) {
+            //create a row that will contain the message bubble and avatar
+            const row = document.createElement("div");
+            //place user messages on the right and chatbot messages on the left
+            row.className = `message-row ${sender === "user" ? "user-row" : "bot-row"}`;
+
+            //build a simple message bubble when the sender is the user
+            if (sender === "user") {
+                row.innerHTML = `
+                    <article class="message user-message">
+                        <p>${escapeHTML(data)}</p>
+                    </article>
+                    <div class="avatar user-avatar" aria-hidden="true">You</div>
+                `;
+            } else {
+                //read the chatbot response values and provide safe default values
+                const category = data.category || "AutiGuide";
+                const riskLevel = data.risk_level || "low";
+                const answer = data.answer || "";
+                const steps = Array.isArray(data.steps) ? data.steps : [];
+                const sourceType = data.source_type || "";
+                const confidence = data.confidence || "";
+
+                //store the optional step-by-step instructions
+                let stepsHTML = "";
+                //create the numbered steps box only when steps are available
+                if (steps.length > 0) {
+                    stepsHTML = `
+                        <div class="steps-box">
+                            <strong>Suggested steps</strong>
+                            <ol>
+                                ${steps.map(step => `<li>${escapeHTML(step)}</li>`).join("")}
+                            </ol>
+                        </div>
+                    `;
+                }
+
+                //store the optional source and confidence information
+                let sourceHTML = "";
+                //show the source line only when at least one value exists
+                if (sourceType || confidence) {
+                    sourceHTML = `
+                        <div class="source-line">
+                            ${sourceType ? `<span>${escapeHTML(sourceType)}</span>` : ""}
+                            ${confidence ? `<span>Match: ${escapeHTML(confidence)}</span>` : ""}
+                        </div>
+                    `;
+                }
+
+                row.innerHTML = `
+                    <div class="avatar bot-avatar" aria-hidden="true">A</div>
+
+                    <article class="message bot-message">
+                        <div class="message-meta">
+                            <span class="category">${escapeHTML(category)}</span>
+                            <span class="risk ${riskClass(riskLevel)}">
+                                ${escapeHTML(formatRiskText(riskLevel))}
+                            </span>
+                        </div>
+
+                        <p>${escapeHTML(answer)}</p>
+                        ${stepsHTML}
+                        ${sourceHTML}
+                    </article>
+                `;
+            }
+
+            //add the completed message row to the chat box
+            chatBox.appendChild(row);
+            //scroll down so the newest message is visible
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        //display three animated dots while waiting for the Flask response
+        function showTyping() {
+            const row = document.createElement("div");
+            row.className = "message-row bot-row";
+            //use an id so the temporary typing message can be removed later
+            row.id = "typing-message";
+
+            row.innerHTML = `
+                <div class="avatar bot-avatar" aria-hidden="true">A</div>
+
+                <article class="message bot-message typing-message">
+                    <div class="typing-dots" aria-label="AutiGuide is thinking">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </article>
+            `;
+
+            chatBox.appendChild(row);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        //remove the temporary typing animation from the page
+        function removeTyping() {
+            document.getElementById("typing-message")?.remove();
+        }
+
+        //replace the old suggestion buttons with suggestions from the server
+        function updateSuggestions(suggestions) {
+            //clear the previous suggestion buttons
+            suggestionsArea.innerHTML = "";
+
+            //show a message when no new suggestions were returned
+            if (!Array.isArray(suggestions) || suggestions.length === 0) {
+                suggestionsArea.innerHTML = `
+                    <span class="no-suggestions">No additional suggestions</span>
+                `;
+                return;
+            }
+
+            //create one clickable button for every suggested question
+            suggestions.forEach(suggestion => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.innerText = suggestion;
+                button.onclick = () => quickQuestion(suggestion);
+                suggestionsArea.appendChild(button);
+            });
+        }
+
+        //enable or disable the input controls during a server request
+        function setInputState(disabled) {
+            //save the request state to prevent duplicate messages
+            requestInProgress = disabled;
+            userInput.disabled = disabled;
+            sendButton.disabled = disabled;
+        }
+
+        //increase the text area height when the user writes multiple lines
+        function resizeInput() {
+            //reset the height before calculating the new required height
+            userInput.style.height = "auto";
+            userInput.style.height = `${Math.min(userInput.scrollHeight, 150)}px`;
+        }
+
+        //send the current user question to the Flask backend
+        async function sendMessage() {
+            //remove spaces from the beginning and end of the question
+            const message = userInput.value.trim();
+
+            //stop if the message is empty or another request is still running
+            if (!message || requestInProgress) return;
+
+            //show the user's message immediately
+            addMessage("user", message);
+
+            if (welcomePrompt) {
+                //hide the welcome heading after the conversation begins
+                welcomePrompt.hidden = true;
+            }
+
+            //clear and reset the typing area
+            userInput.value = "";
+            resizeInput();
+            //disable the input controls until the server responds
+            setInputState(true);
+            //show the typing animation while waiting
+            showTyping();
+            closeSidebar();
+
+            try {
+                //send the message to the Flask /chat route as JSON
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                //create an error when the server returns an unsuccessful status
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+
+                //convert the server response from JSON into a JavaScript object
+                const data = await response.json();
+
+                removeTyping();
+                //display the chatbot answer and its optional details
+                addMessage("bot", data);
+                //replace the suggestions using the server response
+                updateSuggestions(data.suggestions);
+            //show a friendly message when the browser cannot contact Flask
+            } catch (error) {
+                removeTyping();
+
+                addMessage("bot", {
+                    category: "Connection error",
+                    risk_level: "low",
+                    answer:
+                        "I could not connect to the server. Please check that the Flask application is running and try again.",
+                    steps: [],
+                    source_type: "System message",
+                    confidence: "none"
+                });
+
+                console.error("AutiGuide error:", error);
+            //always restore the input controls after the request ends
+            } finally {
+                setInputState(false);
+                //place the typing cursor inside the input when the page opens
+        userInput.focus();
+            }
+        }
+
+        //send a question when the user clicks a suggestion or guide button
+        function quickQuestion(question) {
+            //ignore the click while another request is running
+            if (requestInProgress) return;
+
+            userInput.value = question;
+            resizeInput();
+            sendMessage();
+        }
+
+        //clear the server session and return the interface to its starting state
+        async function resetChat() {
+            if (requestInProgress) return;
+
+            setInputState(true);
+
+            try {
+                //ask the Flask /reset route to clear saved conversation data
+                const response = await fetch("/reset", {
+                    method: "POST"
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+
+                await response.json();
+
+                //replace the full conversation with the reset confirmation message
+                chatBox.innerHTML = `
+                    <div class="message-row bot-row">
+                        <div class="avatar bot-avatar" aria-hidden="true">A</div>
+
+                        <article class="message bot-message reset-message">
+                            <div class="message-meta">
+                                <span class="category">AutiGuide</span>
+                                <span class="risk risk-low">General</span>
+                            </div>
+
+                            <p>
+                                Your conversation has been reset. Ask a new question or choose one
+                                of the suggestions below.
+                            </p>
+                        </article>
+                    </div>
+                `;
+
+                if (welcomePrompt) {
+                    //show the welcome heading again after the reset
+                    welcomePrompt.hidden = false;
+                }
+
+                //restore the original suggestion buttons
+                updateSuggestions([
+                    "Start meltdown guide",
+                    "My child bites others at school",
+                    "What is ABA therapy?",
+                    "My child is a picky eater",
+                    "Where can I get autism support in Malaysia?"
+                ]);
+
+                closeSidebar();
+            } catch (error) {
+                addMessage("bot", {
+                    category: "Connection error",
+                    risk_level: "low",
+                    answer: "The conversation could not be reset. Please try again.",
+                    steps: [],
+                    source_type: "System message",
+                    confidence: "none"
+                });
+
+                console.error("Reset error:", error);
+            } finally {
+                setInputState(false);
+                userInput.focus();
+            }
+        }
+
+        //open the sidebar and overlay on smaller screens
+        function openSidebar() {
+            //add classes that move the sidebar into view and lock the page
+            sidebar.classList.add("is-open");
+            sidebarOverlay.classList.add("is-visible");
+            document.body.classList.add("sidebar-open");
+        }
+
+        //close the mobile sidebar and remove the overlay
+        function closeSidebar() {
+            sidebar.classList.remove("is-open");
+            sidebarOverlay.classList.remove("is-visible");
+            document.body.classList.remove("sidebar-open");
+        }
+
+        //resize the text area whenever its content changes
+        userInput.addEventListener("input", resizeInput);
+
+        //send with Enter but allow Shift + Enter to create a new line
+        userInput.addEventListener("keydown", event => {
+            if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        //close the mobile sidebar when the Escape key is pressed
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeSidebar();
+            }
+        });
+
+        userInput.focus();
+    </script>
+</body>
+</html>

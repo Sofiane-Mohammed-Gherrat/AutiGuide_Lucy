@@ -1,0 +1,1114 @@
+/* =========================================
+   AutiGuide minimal interface
+   ========================================= */
+
+/*store the main colours, sizes, rounded corners and shadows used across the page*/
+:root {
+    --page: #f6f8f7;
+    --surface: #ffffff;
+    --surface-soft: #f3f6f5;
+    --surface-muted: #e9f0ee;
+
+    --border: #dfe7e5;
+    --border-strong: #ced9d6;
+
+    --text: #17211f;
+    --text-soft: #5f6d69;
+    --text-muted: #85918e;
+
+    --brand: #2d8578;
+    --brand-dark: #236c62;
+    --brand-soft: #e4f2ef;
+
+    --success: #2a7556;
+    --success-soft: #e8f5ee;
+
+    --warning: #a5661e;
+    --warning-soft: #fff3e2;
+
+    --danger: #b44343;
+    --danger-soft: #fdecec;
+
+    --sidebar-width: 252px;
+
+    --radius-large: 20px;
+    --radius-medium: 15px;
+    --radius-small: 11px;
+
+    --shadow-small: 0 1px 2px rgba(24, 39, 35, 0.04);
+    --shadow-medium: 0 14px 36px rgba(24, 46, 40, 0.08);
+}
+
+/*remove default spacing and include borders inside element sizes*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*make the document able to fill the full browser height*/
+html,
+/*set the main page background, text colour and font*/
+body {
+    min-height: 100%;
+}
+
+body {
+    background: var(--page);
+    color: var(--text);
+    font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*make buttons and the text area use the same font as the page*/
+button,
+textarea {
+    font: inherit;
+}
+
+/*remove the browser's default button border*/
+button {
+    border: 0;
+}
+
+/*remove the coloured tap flash on touch devices*/
+button,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/*apply the same outline style to every sidebar icon*/
+svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* =========================================
+   Main layout
+   ========================================= */
+
+/*create the two-column layout for the sidebar and main chatbot*/
+.app-shell {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+/*keep the sidebar at the left and make it fill the screen height*/
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 18px 18px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow: hidden;
+    z-index: 20;
+}
+
+/*allow the main chatbot section to use the remaining width*/
+.main-panel {
+    min-width: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*style the header above the conversation*/
+.topbar {
+    min-height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px clamp(18px, 3vw, 36px);
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+}
+
+/*arrange messages, suggestions and the typing area in three rows*/
+.chat-layout {
+    width: min(900px, calc(100% - 28px));
+    height: calc(100vh - 74px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    gap: 14px;
+    padding: 26px clamp(16px, 3vw, 30px) 16px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.52),
+        rgba(255, 255, 255, 0.24)
+    );
+    border-radius: 28px 28px 0 0;
+}
+
+/* =========================================
+   Brand
+   ========================================= */
+
+/*align the logo and application name inside the sidebar*/
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 2px 4px 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+/*style the green square containing the letter A*/
+.brand-logo {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    background: var(--brand);
+    border-radius: 13px;
+    font-size: 20px;
+    font-weight: 800;
+    box-shadow: 0 8px 18px rgba(45, 133, 120, 0.18);
+}
+
+/*prevent long brand text from breaking the sidebar width*/
+.brand-copy {
+    min-width: 0;
+}
+
+/*style the AutiGuide title*/
+.brand-copy h1 {
+    font-size: 18px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+/*style the small caregiver support subtitle*/
+.brand-copy p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 12.5px;
+}
+
+/*allow the guide list to scroll without moving the footer*/
+.sidebar-scroll {
+    flex: 1;
+    min-height: 0;
+    padding-top: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+}
+
+/*set the sidebar scrollbar width in WebKit browsers*/
+.sidebar-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+/*style the draggable part of the sidebar scrollbar*/
+.sidebar-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 999px;
+}
+
+/* =========================================
+   Sidebar sections
+   ========================================= */
+
+/*add spacing between multiple sidebar sections*/
+.sidebar-section + .sidebar-section {
+    margin-top: 26px;
+}
+
+/*style small uppercase section headings*/
+.section-label {
+    margin: 0 6px 10px;
+    color: var(--text-muted);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+/*place the guide buttons in a vertical list*/
+.guided-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/*create the grid layout for each guide icon and its text*/
+.guided-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding: 9px;
+    text-align: left;
+    background: transparent;
+    border-radius: 13px;
+    cursor: pointer;
+    transition:
+        background 150ms ease,
+        transform 150ms ease;
+}
+
+/*add a soft background when the mouse is over a guide*/
+.guided-item:hover {
+    background: var(--surface-soft);
+}
+
+/*slightly shrink a guide button while it is pressed*/
+.guided-item:active {
+    transform: scale(0.985);
+}
+
+/*style the rounded background behind each guide icon*/
+.guided-icon {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    color: var(--brand-dark);
+    background: var(--brand-soft);
+    border-radius: 12px;
+}
+
+/*set a consistent size for guide icons*/
+.guided-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/*place each guide title above its subtitle*/
+.guided-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/*style the main guide name*/
+.guided-copy strong {
+    color: var(--text);
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+/*style the lighter guide description*/
+.guided-copy small {
+    margin-top: 2px;
+    color: #96a19e;
+    font-size: 10.75px;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
+/*arrange optional topic buttons vertically*/
+.topic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/*style each simple topic button*/
+.topic-list button {
+    width: 100%;
+    padding: 9px 10px;
+    color: var(--text-soft);
+    text-align: left;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition:
+        color 150ms ease,
+        background 150ms ease;
+}
+
+/*highlight a topic button when the mouse is over it*/
+.topic-list button:hover {
+    color: var(--brand-dark);
+    background: var(--surface-soft);
+}
+
+/* =========================================
+   Sidebar footer
+   ========================================= */
+
+/*separate the bottom notice and reset button from the guide list*/
+.sidebar-footer {
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+/*style the informational warning card*/
+.notice-card {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 9px;
+    padding: 12px;
+    color: var(--text-soft);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+}
+
+/*style the small circular information symbol*/
+.notice-mark {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    color: var(--brand-dark);
+    background: var(--brand-soft);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/*set the warning text size and spacing*/
+.notice-card p {
+    font-size: 11.5px;
+    line-height: 1.45;
+}
+
+/*make the warning heading more visible*/
+.notice-card strong {
+    display: block;
+    margin-bottom: 3px;
+    color: var(--text);
+    font-size: 12px;
+}
+
+/*style the button used to reset the conversation*/
+.new-chat-button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 11px 12px;
+    color: #ffffff;
+    background: var(--brand);
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 150ms ease,
+        transform 150ms ease;
+}
+
+/*darken the reset button when the mouse is over it*/
+.new-chat-button:hover {
+    background: var(--brand-dark);
+}
+
+/*slightly shrink the reset button while it is pressed*/
+.new-chat-button:active {
+    transform: scale(0.985);
+}
+
+/* =========================================
+   Topbar
+   ========================================= */
+
+/*align the mobile menu and chatbot title*/
+.topbar-left {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/*prevent title text from overflowing the header*/
+.conversation-info {
+    min-width: 0;
+}
+
+/*align the green status dot with the title*/
+.conversation-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/*keep the title on one line and shorten it if necessary*/
+.conversation-title h2 {
+    overflow: hidden;
+    font-size: 15.5px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*style the smaller description under the title*/
+.conversation-info p {
+    margin-top: 4px;
+    overflow: hidden;
+    color: var(--text-muted);
+    font-size: 12.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*create the green online status indicator*/
+.status-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 auto;
+    background: #37a579;
+    border: 2px solid #daf1e7;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+/*hide and style the mobile sidebar button*/
+.mobile-menu-button {
+    display: none;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    place-items: center;
+    gap: 4px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    cursor: pointer;
+}
+
+/*create the three horizontal menu lines*/
+.mobile-menu-button span {
+    width: 17px;
+    height: 2px;
+    background: var(--text-soft);
+    border-radius: 999px;
+}
+
+/* =========================================
+   Chat
+   ========================================= */
+
+/*make the message area scroll when the conversation becomes long*/
+.chat-box {
+    min-height: 0;
+    padding: 4px 4px 18px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+}
+
+/*set the chat scrollbar width*/
+.chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+/*style the chat scrollbar handle*/
+.chat-box::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 999px;
+}
+
+/*align each avatar with its message bubble*/
+.message-row {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 20px;
+    animation: message-in 180ms ease;
+}
+
+/*place chatbot responses on the left*/
+.bot-row {
+    justify-content: flex-start;
+}
+
+/*place user messages on the right*/
+.user-row {
+    justify-content: flex-end;
+}
+
+/*fade and move new messages into view*/
+@keyframes message-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*shared style for user and chatbot avatars*/
+.avatar {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    margin-top: 2px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+/*use the brand colour for the chatbot avatar*/
+.bot-avatar {
+    color: #ffffff;
+    background: var(--brand);
+}
+
+/*use a light neutral style for the user avatar*/
+.user-avatar {
+    color: var(--text-soft);
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+}
+
+/*shared size, spacing and shape for all message bubbles*/
+.message {
+    width: fit-content;
+    max-width: min(610px, calc(100% - 48px));
+    padding: 14px 16px;
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-small);
+}
+
+/*style chatbot answer bubbles*/
+.bot-message {
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top-left-radius: 5px;
+}
+
+/*style user question bubbles*/
+.user-message {
+    max-width: min(560px, calc(100% - 48px));
+    color: #ffffff;
+    background: var(--brand);
+    border-top-right-radius: 5px;
+}
+
+/*keep message text readable and wrap long sentences safely*/
+.message p {
+    margin: 0;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    line-height: 1.62;
+}
+
+/*style the second paragraph of the welcome message*/
+.secondary-text {
+    margin-top: 8px !important;
+    color: var(--text-soft);
+}
+
+/*limit the width of the reset confirmation*/
+.reset-message {
+    min-width: 0;
+    max-width: 560px;
+}
+
+/*align the category and risk labels above an answer*/
+.message-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 9px;
+}
+
+/*shared rounded label style*/
+.category,
+.risk {
+    display: inline-flex;
+    align-items: center;
+    min-height: 22px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 750;
+    line-height: 1;
+}
+
+/*use the brand colours for category labels*/
+.category {
+    color: var(--brand-dark);
+    background: var(--brand-soft);
+}
+
+/*green label used for low-risk information*/
+.risk-low {
+    color: var(--success);
+    background: var(--success-soft);
+}
+
+/*orange label used for medium or guided information*/
+.risk-medium {
+    color: var(--warning);
+    background: var(--warning-soft);
+}
+
+/*red label used for high-risk or medical information*/
+.risk-high {
+    color: var(--danger);
+    background: var(--danger-soft);
+}
+
+/*strong red label used for emergency responses*/
+.risk-emergency {
+    color: #ffffff;
+    background: var(--danger);
+}
+
+/*create a separate box for step-by-step guidance*/
+.steps-box {
+    margin-top: 13px;
+    padding: 12px 13px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+/*style the Suggested steps heading*/
+.steps-box strong {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--text);
+    font-size: 12.5px;
+}
+
+/*indent and colour the numbered steps*/
+.steps-box ol {
+    margin-left: 18px;
+    color: var(--text-soft);
+}
+
+/*add spacing between individual steps*/
+.steps-box li {
+    padding-left: 2px;
+    margin-bottom: 6px;
+}
+
+/*remove unnecessary space after the final step*/
+.steps-box li:last-child {
+    margin-bottom: 0;
+}
+
+/*display the source and match quality below an answer*/
+.source-line {
+    margin-top: 11px;
+    padding-top: 9px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 13px;
+    color: var(--text-muted);
+    font-size: 10.5px;
+    border-top: 1px solid var(--border);
+}
+
+/*keep enough width for the animated typing dots*/
+.typing-message {
+    min-width: 68px;
+}
+
+/*align the three typing dots horizontally*/
+.typing-dots {
+    height: 18px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/*create and animate each typing dot*/
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    animation: typing 1s infinite ease-in-out;
+}
+
+/*start the second dot slightly later*/
+.typing-dots span:nth-child(2) {
+    animation-delay: 120ms;
+}
+
+/*start the third dot after the second dot*/
+.typing-dots span:nth-child(3) {
+    animation-delay: 240ms;
+}
+
+/*move the typing dots up and down*/
+@keyframes typing {
+    0%,
+    60%,
+    100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+/* =========================================
+   Suggestions
+   ========================================= */
+
+
+/*style the question shown above the first suggestions*/
+.welcome-prompt {
+    margin-bottom: 10px;
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/*fully hide the welcome prompt after the first message*/
+.welcome-prompt[hidden] {
+    display: none;
+}
+
+/*hold the suggestion heading and buttons*/
+.suggestions-block {
+    padding: 0 1px;
+}
+
+/*align Suggested questions with the Optional label*/
+.suggestions-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 8px;
+    color: var(--text-soft);
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+/*style the small Optional label*/
+.suggestions-heading small {
+    padding: 2px 6px;
+    color: var(--text-muted);
+    background: var(--surface-muted);
+    border-radius: 999px;
+    font-size: 9.5px;
+    font-weight: 700;
+}
+
+/*place suggestion buttons in a horizontal scrolling row*/
+.suggestions-area {
+    display: flex;
+    gap: 8px;
+    padding-bottom: 3px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+/*hide the horizontal suggestion scrollbar*/
+.suggestions-area::-webkit-scrollbar {
+    display: none;
+}
+
+/*style each suggested question button*/
+.suggestions-area button {
+    flex: 0 0 auto;
+    padding: 8px 11px;
+    color: var(--text-soft);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 650;
+    cursor: pointer;
+    transition:
+        color 150ms ease,
+        background 150ms ease,
+        border-color 150ms ease;
+}
+
+/*highlight a suggestion when the mouse is over it*/
+.suggestions-area button:hover {
+    color: var(--brand-dark);
+    background: var(--brand-soft);
+    border-color: #bddbd4;
+}
+
+/*style the message shown when no suggestions are available*/
+.no-suggestions {
+    color: var(--text-muted);
+    font-size: 11.5px;
+}
+
+/* =========================================
+   Composer
+   ========================================= */
+
+/*hold the typing area at the bottom of the page*/
+.composer-block {
+    padding-top: 1px;
+}
+
+/*create the rounded input container and its shadow*/
+.composer {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 17px;
+    box-shadow: var(--shadow-medium);
+    transition:
+        border-color 150ms ease,
+        box-shadow 150ms ease;
+}
+
+/*highlight the complete input area while the user is typing*/
+.composer:focus-within {
+    border-color: #9fc8c0;
+    box-shadow:
+        0 0 0 3px rgba(45, 133, 120, 0.08),
+        var(--shadow-medium);
+}
+
+/*style the expandable question text area*/
+.composer textarea {
+    flex: 1;
+    min-height: 42px;
+    max-height: 150px;
+    padding: 10px 10px 8px;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    resize: none;
+    line-height: 1.45;
+}
+
+
+
+/*style the temporary instruction inside the text area*/
+.composer textarea::placeholder {
+    color: #98a4a1;
+}
+
+/*style the green button used to send a question*/
+.send-button {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    background: var(--brand);
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+        background 150ms ease,
+        transform 150ms ease,
+        opacity 150ms ease;
+}
+
+/*darken and lift the send button on hover*/
+.send-button:hover {
+    background: #226b61;
+    box-shadow: 0 5px 12px rgba(45, 133, 120, 0.2);
+}
+
+/*use the darker brand colour while the button is pressed*/
+.send-button:active {
+    background: var(--brand-dark);
+}
+
+/*show that the send button is unavailable during a request*/
+.send-button:disabled {
+    opacity: 0.55;
+    cursor: wait;
+}
+
+/*set the size of the arrow inside the send button*/
+.send-button span {
+    font-size: 19px;
+    line-height: 1;
+}
+
+
+/* =========================================
+   Mobile
+   ========================================= */
+
+/*hide the mobile background overlay on larger screens*/
+.sidebar-overlay {
+    display: none;
+}
+
+/*change the sidebar into a sliding mobile menu below 900 pixels*/
+@media (max-width: 900px) {
+    .app-shell {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: min(var(--sidebar-width), 86vw);
+        transform: translateX(-105%);
+        box-shadow: 22px 0 45px rgba(19, 37, 32, 0.14);
+        transition: transform 220ms ease;
+    }
+
+    .sidebar.is-open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        background: rgba(19, 31, 28, 0.34);
+        backdrop-filter: blur(2px);
+        transition:
+            opacity 220ms ease,
+            visibility 220ms ease;
+        z-index: 15;
+    }
+
+    .sidebar-overlay.is-visible {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+
+    .mobile-menu-button {
+        display: grid;
+    }
+
+    .main-panel {
+        height: 100dvh;
+    }
+
+    .chat-layout {
+        height: calc(100dvh - 74px);
+    }
+}
+
+/*reduce sizes and spacing for phone screens*/
+@media (max-width: 640px) {
+    .topbar {
+        min-height: 68px;
+        padding: 10px 12px;
+    }
+
+    .conversation-info p {
+        display: none;
+    }
+.chat-layout {
+        width: 100%;
+        height: calc(100dvh - 68px);
+        padding: 16px 11px 9px;
+        gap: 10px;
+        border-radius: 0;
+    }
+
+
+    .welcome-prompt {
+        font-size: 16px;
+    }
+
+    .message-row {
+        gap: 7px;
+        margin-bottom: 17px;
+    }
+
+    .avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        font-size: 9px;
+    }
+
+    .message,
+    .user-message {
+        max-width: calc(100% - 40px);
+        padding: 12px 13px;
+    }
+
+    .message p {
+        font-size: 14px;
+        line-height: 1.58;
+    }
+}
+
+/*make the title and menu button fit very small phones*/
+@media (max-width: 380px) {
+    .conversation-title h2 {
+        max-width: 150px;
+        font-size: 14px;
+    }
+
+    .mobile-menu-button {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* =========================================
+   Accessibility
+   ========================================= */
+
+/*show a visible keyboard focus outline for accessibility*/
+button:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(45, 133, 120, 0.18);
+    outline-offset: 2px;
+}
+
+/*disable most movement when the user requests reduced motion*/
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+}
