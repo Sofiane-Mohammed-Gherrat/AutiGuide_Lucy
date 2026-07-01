@@ -1,0 +1,394 @@
+[
+    {
+        "id": "BEH001",
+        "category": "Behaviour",
+        "subcategory": "Meltdowns",
+        "intent": "Definition",
+        "title": "What is a sensory meltdown?",
+        "search_text": [
+        "what is a meltdown",
+        "define sensory meltdown",
+        "meaning of meltdown"
+        ],
+        "answer": "A sensory meltdown occurs when an autistic individual becomes overwhelmed by sensory, emotional, or situational input beyond their capacity to cope. Unlike a tantrum, it is not goal-directed — the child is not trying to get something. It can manifest as crying, screaming, hitting, or shutting down completely. The person typically has little or no control over their response during this time"
+    },
+    {
+        "id": "BEH002",
+        "category": "Behaviour",
+        "subcategory": "Meltdowns",
+        "intent": "Advice",
+        "title": "What should I do during a meltdown?",
+        "search_text": [
+        "what to do during a meltdown",
+        "how to calm child during meltdown",
+        "help during sensory overload",
+        "child screaming uncontrollably",
+        "how to respond to meltdown",
+        "actions to take during meltdown"
+        ],
+        "answer": "During a meltdown: (1) Lower your own voice and stay as calm as possible — your state affects theirs. (2) Reduce sensory input: dim lights, lower noise, move to a quieter space if safe. (3) Avoid asking questions or giving instructions — language is hard to process mid-meltdown. (4) Keep the child safe without restraining unless there is immediate danger. (5) Wait it out — meltdowns have a natural arc. Offer reassurance only after the child has visibly calmed."
+    },
+    {
+        "id": "BH003",
+        "category": "Behaviour",
+        "subcategory": "Meltdowns",
+        "intent": "Prevention",
+        "title": "How can I prevent meltdowns?",
+        "search_text": [
+        "prevent meltdown",
+        "avoid sensory overload",
+        "reduce frequency of meltdowns",
+        "stop meltdowns before they happen",
+        "how to prepare autistic child"
+        ],
+        "answer": "Prevention focuses on three areas: (1) Trigger identification — keep a diary of when meltdowns occur to find patterns (time of day, locations, transitions, sensory environments). (2) Routine and predictability — autistic children thrive with structured schedules. Use visual timetables so the child knows what to expect. (3) Pre-event preparation — before a new or difficult situation, explain what will happen using social stories or visual supports. Build in an exit plan so the child knows they can leave if overwhelmed."
+    },
+    {
+        "id": "BH004",
+        "category": "Behaviour",
+        "subcategory": "Meltdowns",
+        "intent": "Signs",
+        "title": "What are the warning signs before a meltdown?",
+        "search_text": [
+        "signs before meltdown",
+        "meltdown warning signs",
+        "early signs of overload",
+        "how to tell meltdown is coming",
+        "my child gets agitated before meltdown",
+        "build up to meltdown"
+        ],
+        "answer": "Meltdowns rarely happen without a build-up phase. Common early warning signs include: increased or frantic stimming (rocking, hand-flapping, pacing), covering ears or eyes, repeating phrases or questions, refusing to engage, becoming very still and withdrawn, flushed face, or a visible increase in anxiety. Learning your child's individual early signs gives you a window to intervene — offer a calm-down tool, reduce stimulation, or exit the situation."
+    },
+    {
+        "id": "BH005",
+        "category": "Behaviour",
+        "subcategory": "Repetitive Behaviours",
+        "intent": "Definition",
+        "title": "What is stimming?",
+        "search_text": [
+        "what is stimming",
+        "what does stimming mean",
+        "why does my child flap hands",
+        "repetitive movements autism",
+        "self-stimulatory behaviour",
+        "rocking back and forth autism"
+        ],
+        "answer": "Stimming (self-stimulatory behaviour) includes actions like hand-flapping, rocking, spinning, humming, or repeating phrases. It serves important functions: sensory regulation (blocking out overwhelming input or seeking stimulation), emotional regulation (calming anxiety or expressing excitement), and communication. Stimming is not inherently harmful and should not be suppressed without good reason — doing so can increase anxiety."
+    },
+    {
+        "id": "BH006",
+        "category": "Behaviour",
+        "subcategory": "Repetitive Behaviours",
+        "intent": "Advice",
+        "title": "Should I stop my child from stimming?",
+        "search_text": [
+        "should I stop stimming",
+        "is stimming bad",
+        "how to reduce stimming",
+        "is it okay to let child stim",
+        "when to intervene in stimming",
+        "child rocks back and forth should I worry"
+        ],
+        "answer": "Stimming meets genuine sensory and emotional needs. Suppressing it without a replacement strategy typically increases anxiety and distress. The main reasons to redirect are: the stim causes physical injury, it prevents the child from accessing learning or social situations, or it is socially stigmatising in a context the child themselves finds important. In these cases, work with a therapist to identify a functionally equivalent replacement stim."
+    },
+    {
+        "id": "BH007",
+        "category": "Behaviour",
+        "subcategory": "Aggression",
+        "intent": "Advice",
+        "title": "How do I handle aggressive behaviour in my autistic child?",
+        "search_text": [
+        "my autistic child hits me",
+        "child biting aggression autism",
+        "how to handle aggressive autistic child",
+        "autistic child violent behaviour",
+        "what to do when child hits",
+        "aggressive outbursts autism"
+        ],
+        "answer": "Aggressive behaviour in autistic children almost always has a function: escaping a demand, getting sensory input, communicating pain or distress, or responding to overwhelm. Steps: (1) Keep everyone safe first — move yourself or the child away from harm. (2) Afterwards, try to identify what immediately preceded the aggression using an ABC chart (Antecedent, Behaviour, Consequence). (3) Address the underlying cause rather than the behaviour in isolation. (4) Teach an alternative way to communicate the same need. Punishment-based approaches are generally ineffective and can increase distress."
+    },
+    {
+        "id": "BH008",
+        "category": "Behaviour",
+        "subcategory": "Aggression",
+        "intent": "Comparison",
+        "title": "What is the difference between a meltdown and aggression?",
+        "search_text": [
+        "difference between meltdown and aggression",
+        "is aggression the same as meltdown",
+        "why is my child aggressive vs overwhelmed",
+        "difference meltdown behaviour problem"
+        ],
+        "answer": "The distinction matters because the responses are different. A meltdown is neurological overwhelm — the child is not trying to achieve anything, they have lost the capacity to regulate. Aggression, by contrast, typically has a function: to escape a demand, access something, or communicate. A child hitting to stop a task is not in meltdown — they are communicating. Overlaps exist: aggression can occur during a meltdown, or a meltdown can be triggered by an aggressive incident. Correctly identifying which is occurring guides the right response."
+    },
+    {
+        "id": "BH009",
+        "category": "Behaviour",
+        "subcategory": "Routines and Transitions",
+        "intent": "Advice",
+        "title": "My child struggles with transitions between activities — what can I do?",
+        "search_text": [
+        "child hates transitions",
+        "my child can't switch activities",
+        "autistic child refuses to stop activity",
+        "how to help with transitions",
+        "change of routine autism",
+        "moving between tasks autism"
+        ],
+        "answer": "Transitions are often the hardest moment of the day for autistic children because they require cognitive flexibility and the sudden end of something the child is focused on. Strategies: (1) Give advance warnings: '5 more minutes, then we stop.' Use a visual timer (Time Timer brand works well) so time is concrete. (2) Use a transition object — a small item carried from the old activity to the new one can ease the psychological switch. (3) Tell the child what comes next, not just what is stopping. (4) Build transitions into the visual schedule so they are expected, not sudden."
+    },
+    {
+        "id": "BH010",
+        "category": "Behaviour",
+        "subcategory": "Routines and Transitions",
+        "intent": "Prevention",
+        "title": "How do I prepare my child for an unexpected change in routine?",
+        "search_text": [
+        "unexpected change routine autism",
+        "how to prepare child for change",
+        "routine disruption autism",
+        "cancelled plans autistic child",
+        "flexibility routine autism",
+        "school timetable change autism"
+        ],
+        "answer": "When change is unavoidable: (1) Tell the child as early as possible, using their preferred communication format (verbal, written, visual). (2) Explain what is changing and, critically, what is NOT changing — this anchors them. (3) Walk through the new plan step by step. (4) Validate that change is hard: 'I know this is really difficult. We are going to get through it.' (5) If possible, include a known preferred activity in the new plan to provide something to look forward to. Building tolerance for change gradually — introducing small, manageable changes during low-stress periods — reduces the impact of unavoidable disruptions."
+    },
+    {
+    "id": "BH011",
+    "category": "Behaviour",
+    "subcategory": "Meltdowns",
+    "intent": "Advice",
+    "title": "How do I help my child recover after a meltdown?",
+    "search_text": [
+        "child recovery after meltdown",
+        "how long does meltdown recovery take",
+        "post meltdown support",
+        "child exhausted after meltdown",
+        "talking to child after meltdown"
+        ],
+        "answer": "Recovery after a meltdown requires time and gentleness. (1) Do not debrief immediately — the child's nervous system is still dysregulated and they will not process a conversation well. Wait until they are fully calm, which may take 20–60 minutes or longer. (2) Offer comfort in their preferred form: a favourite blanket, quiet space, or simply sitting nearby without demands. (3) Once genuinely calm, a brief, non-blaming check-in can help older children build self-awareness: 'That looked really hard. Are you okay?' (4) Avoid punishing the meltdown — it was not a choice. Focus on what triggered it to prevent the next one."
+    },
+    {
+        "id": "BH012",
+        "category": "Behaviour",
+        "subcategory": "Meltdowns",
+        "intent": "Signs",
+        "title": "How do I know when my child is starting to calm down from a meltdown?",
+        "search_text": [
+        "how to tell meltdown is ending",
+        "signs child is calming down",
+        "meltdown winding down signs",
+        "when is it safe to approach after meltdown",
+        "child quieting down after outburst"
+        ],
+        "answer": "Signs that a meltdown is ending include: a decrease in the intensity of crying or screaming, slower or more rhythmic breathing, reduced physical movement (less thrashing or pacing), the child beginning to seek out a comfort object or person, or a return to a repetitive self-soothing stim. Do not interpret a sudden silence as full recovery — some children go very quiet mid-meltdown before escalating again. Wait for several consistent calm signs before re-engaging."
+    },
+    {
+        "id": "BH013",
+        "category": "Behaviour",
+        "subcategory": "Repetitive Behaviours",
+        "intent": "Signs",
+        "title": "What types of stimming should I be concerned about?",
+        "search_text": [
+        "dangerous stimming",
+        "harmful stimming behaviours",
+        "self injurious stimming",
+        "when is stimming a problem",
+        "child banging head stimming",
+        "stimming that causes injury"
+        ],
+        "answer": "Most stimming is harmless and should not be interfered with. However, some stims warrant attention: head-banging against hard surfaces, eye-poking or pressing, skin-picking to the point of bleeding, hair-pulling that causes bald patches, or biting self hard enough to break skin. These are sometimes called self-injurious behaviours (SIB) and are distinct from typical stimming. They may signal pain, extreme distress, or an unmet sensory need. A paediatrician or behavioural therapist should be consulted to identify the function and find a safer replacement."
+    },
+    {
+        "id": "BH014",
+        "category": "Behaviour",
+        "subcategory": "Repetitive Behaviours",
+        "intent": "Definition",
+        "title": "What is echolalia and is it a problem?",
+        "search_text": [
+        "what is echolalia",
+        "my child repeats everything I say",
+        "child repeats phrases from TV",
+        "is echolalia normal in autism",
+        "my child copies words",
+        "delayed echolalia autism"
+        ],
+        "answer": "Echolalia is the repetition of words or phrases heard from others — either immediately after hearing them (immediate echolalia) or much later (delayed echolalia, such as repeating lines from a TV show). It is extremely common in autistic children and serves several functions: it can be a form of communication, a way of processing language, self-regulation, or expressing an emotion the child cannot yet put into their own words. It is not a problem in itself. Over time and with support, many children move from echolalic speech toward more spontaneous communication."
+    },
+    {
+        "id": "BH015",
+        "category": "Behaviour",
+        "subcategory": "Aggression",
+        "intent": "Prevention",
+        "title": "How can I reduce aggressive outbursts in my autistic child?",
+        "search_text": [
+        "prevent aggressive behaviour autism",
+        "reduce hitting biting autism",
+        "why does my child have outbursts",
+        "stop child from hitting",
+        "aggression triggers autism",
+        "how to avoid violent behaviour autism"
+        ],
+        "answer": "Reducing aggression long-term requires identifying its function, not just managing the behaviour in the moment. (1) Keep an ABC diary (Antecedent, Behaviour, Consequence) for two weeks to find patterns — what consistently happens before the aggression. (2) Common triggers include sensory overload, demand avoidance, pain, hunger, fatigue, and communication frustration. Address each directly. (3) Teach an alternative: if the child hits to escape a task, teach them a 'break' card. If they bite when overwhelmed, give them a safe chew tool. (4) Ensure the child's sensory environment is manageable throughout the day — chronic low-level overload lowers the threshold for outbursts."
+    },
+    {
+        "id": "BH016",
+        "category": "Behaviour",
+        "subcategory": "Aggression",
+        "intent": "Signs",
+        "title": "Could my child's aggression be caused by pain?",
+        "search_text": [
+        "is my child aggressive because of pain",
+        "hidden pain autism aggression",
+        "autistic child can't communicate pain",
+        "non-verbal child hitting due to pain",
+        "aggression as pain signal autism",
+        "how to tell if autistic child is in pain"
+        ],
+        "answer": "Yes — pain is one of the most commonly missed causes of aggression in autistic children, particularly those with limited verbal communication. Children who cannot say 'my ear hurts' or 'my stomach hurts' may express this through hitting, biting, or outbursts. Common hidden sources of pain include dental problems, ear infections, gastrointestinal issues (constipation, reflux), headaches, and joint pain. If aggression appears suddenly or has no clear behavioural trigger, a medical check-up should be the first step before pursuing behavioural interventions."
+    },
+    {
+        "id": "BH017",
+        "category": "Behaviour",
+        "subcategory": "Routines and Transitions",
+        "intent": "Definition",
+        "title": "Why do autistic children rely so heavily on routine?",
+        "search_text": [
+        "why does my child need routine",
+        "why is routine important for autism",
+        "autistic child obsessed with routine",
+        "why does change upset autistic child",
+        "need for sameness autism",
+        "why routine matters autism"
+        ],
+        "answer": "Autistic children often experience the world as unpredictable and overwhelming. Routine provides a mental map of what is coming next, which significantly reduces anxiety. When events follow a known sequence, the child does not need to expend cognitive and emotional energy anticipating the unknown — they can focus on the task or interaction at hand. This need for sameness is a neurological feature, not stubbornness or inflexibility. Disrupting routine without preparation is the equivalent of suddenly changing the rules of a game mid-play — confusing and distressing rather than exciting."
+    },
+    {
+        "id": "BH018",
+        "category": "Behaviour",
+        "subcategory": "Routines and Transitions",
+        "intent": "Advice",
+        "title": "My child has a meltdown every morning before school — what can I do?",
+        "search_text": [
+        "meltdown every morning autism",
+        "autistic child refuses to go to school",
+        "morning routine autism difficulty",
+        "school morning meltdown",
+        "getting autistic child ready for school",
+        "child cries every morning before school"
+        ],
+        "answer": "Morning meltdowns before school usually signal that the transition is too abrupt, too unpredictable, or that school itself is a source of anxiety. Strategies: (1) Create a visual morning schedule broken into small, predictable steps (wake up → dress → breakfast → shoes → door). Pictures work better than words for younger children. (2) Build buffer time — a rushed morning guarantees overload. (3) Identify the specific anxiety: is it the bus, the noise at school, a particular lesson, or leaving home? Address the actual fear, not just the behaviour. (4) Use a transition object the child can carry from home to school. (5) If school refusal is persistent, speak to the school's SENCO — the environment itself may need adjusting."
+    },
+    {
+        "id": "BH019",
+        "category": "Behaviour",
+        "subcategory": "Demand Avoidance",
+        "intent": "Definition",
+        "title": "What is pathological demand avoidance (PDA)?",
+        "search_text": [
+        "what is PDA",
+        "what is pathological demand avoidance",
+        "my child refuses all demands",
+        "child avoids every instruction",
+        "PDA autism profile",
+        "demand avoidance autism"
+        ],
+        "answer": "Pathological demand avoidance (PDA) is a profile within the autism spectrum characterised by an extreme and anxiety-driven need to avoid everyday demands and expectations. Unlike typical demand avoidance, PDA-driven avoidance is not wilful defiance — it is rooted in a pervasive sense of threat triggered by the loss of control that demands create. Children with a PDA profile often use social strategies to avoid demands (distraction, negotiation, humour), can appear sociable but struggle with unpredictability, and respond poorly to standard reward-and-consequence approaches. Low-demand, collaborative approaches tend to be far more effective."
+    },
+    {
+        "id": "BH020",
+        "category": "Behaviour",
+        "subcategory": "Demand Avoidance",
+        "intent": "Advice",
+        "title": "How do I manage demand avoidance at home?",
+        "search_text": [
+        "how to handle demand avoidance",
+        "my child refuses everything",
+        "PDA strategies at home",
+        "child won't follow any instructions",
+        "how to get PDA child to cooperate",
+        "low demand approach autism"
+        ],
+        "answer": "Standard approaches (clear rules, reward charts, consequences) often escalate demand avoidance rather than reduce it. More effective strategies include: (1) Reduce the density of demands throughout the day — fewer demands means fewer refusals. (2) Offer control and choice wherever possible: 'Do you want to put your shoes on first or your coat?' (3) Frame requests indirectly: 'I wonder if anyone could help with this' rather than 'You need to do this.' (4) Use a collaborative, problem-solving approach — involve the child in deciding how tasks will happen. (5) Avoid power struggles; disengage and return to the issue later when both of you are calm. (6) Flexibility and humour often work where authority does not."
+    },
+    {
+        "id": "BH021",
+        "category": "Behaviour",
+        "subcategory": "Demand Avoidance",
+        "intent": "Signs",
+        "title": "How do I know if my child has a PDA profile?",
+        "search_text": [
+        "signs of PDA in child",
+        "does my child have PDA",
+        "PDA characteristics autism",
+        "how to recognise demand avoidance",
+        "PDA vs autism vs ODD",
+        "symptoms of pathological demand avoidance"
+        ],
+        "answer": "Common indicators of a PDA profile include: resisting and avoiding ordinary demands of life to an extreme degree, using social strategies to avoid demands (distraction, excuse-making, negotiating endlessly), appearing comfortable socially on the surface but struggling beneath, switching rapidly between moods, a strong need to be in control of situations and other people, and intense focus on other people's actions. Importantly, PDA is often mistaken for oppositional defiant disorder (ODD) or simply 'bad behaviour.' The key difference is that PDA-driven avoidance is anxiety-based and the child is not simply choosing to be defiant. A formal assessment with a clinician familiar with the PDA profile is needed for diagnosis."
+    },
+    {
+        "id": "BH022",
+        "category": "Behaviour",
+        "subcategory": "Sleep",
+        "intent": "Definition",
+        "title": "Why do many autistic children have sleep problems?",
+        "search_text": [
+        "why does my autistic child not sleep",
+        "autism and sleep problems",
+        "why is sleep difficult for autistic children",
+        "autistic child wakes up at night",
+        "sleep disorders autism",
+        "why can't my autistic child fall asleep"
+        ],
+        "answer": "Sleep difficulties are significantly more common in autistic children than in neurotypical peers, affecting an estimated 50–80% of autistic individuals. Contributing factors include: irregular melatonin production (autistic individuals often produce melatonin later in the evening, delaying sleep onset), heightened sensory sensitivity to light, sound, and touch that makes the sleep environment difficult to tolerate, anxiety that activates at bedtime when the structure of the day ends, and difficulty transitioning from wakefulness to sleep. Understanding the specific cause for your child is the first step toward addressing it."
+    },
+    {
+        "id": "BH023",
+        "category": "Behaviour",
+        "subcategory": "Sleep",
+        "intent": "Advice",
+        "title": "How can I help my autistic child sleep better?",
+        "search_text": [
+        "how to help autistic child sleep",
+        "autism sleep strategies",
+        "bedtime routine autism",
+        "child won't stay in bed autism",
+        "improve sleep autism",
+        "autistic child up all night"
+        ],
+        "answer": "Improving sleep in autistic children involves addressing sensory, routine, and anxiety factors: (1) Create a consistent, predictable bedtime routine — the same sequence every night signals to the nervous system that sleep is coming. (2) Address the sensory environment: blackout curtains, white noise machines, weighted blankets, and comfortable bedding textures can make a significant difference. (3) Reduce screen exposure for at least one hour before bed — screens suppress melatonin production. (4) Consider melatonin supplements — these are widely used for autistic children and have good evidence, but discuss with your paediatrician before starting. (5) Identify bedtime anxiety and address it directly with a calm-down routine or social story about sleep."
+    },
+    {
+        "id": "BH024",
+        "category": "Behaviour",
+        "subcategory": "Sleep",
+        "intent": "Prevention",
+        "title": "How do I build a bedtime routine for my autistic child?",
+        "search_text": [
+        "bedtime routine autistic child",
+        "how to create sleep routine autism",
+        "autism sleep schedule",
+        "visual bedtime routine autism",
+        "calming bedtime for autistic child",
+        "steps for bedtime routine autism"
+        ],
+        "answer": "An effective bedtime routine for an autistic child should be: (1) Consistent — the same time, same steps, same order every night including weekends. Even a 30-minute variation on weekends can disrupt the internal clock. (2) Visual — use a bedtime visual schedule the child can follow independently (e.g. bath → pyjamas → teeth → story → lights off). This reduces the number of verbal prompts, which can feel demanding at a tired time of day. (3) Calming — the hour before bed should move away from high-stimulation activities. Dimming lights, switching to quieter activities, and reducing demands signals the transition to sleep. (4) Predictable in duration — if stories are part of the routine, the number should be fixed so the child knows exactly when it ends."
+    },
+    {
+        "id": "BH025",
+        "category": "Behaviour",
+        "subcategory": "Social Behaviour",
+        "intent": "Advice",
+        "title": "My autistic child prefers to play alone — should I be worried?",
+        "search_text": [
+        "autistic child plays alone",
+        "my child doesn't want to play with others",
+        "child prefers solitary play",
+        "should I force my child to socialise",
+        "autism and solo play",
+        "my child avoids other children"
+        ],
+        "answer": "Preferring solitary play is common in autistic children and is not inherently a problem. Autistic individuals often find social interaction cognitively and sensorially demanding, and solitary play provides restoration and genuine enjoyment. The question to ask is not 'does my child play alone?' but 'is my child distressed by their social situation?' If the child is content playing alone and has ways to connect with others when they choose to, this is a valid social style. Concerns arise when the child wants to connect with peers but does not know how — in that case, structured social skills support or facilitated play groups may help. Never force socialisation as it can increase anxiety and aversion."
+    }
+]
