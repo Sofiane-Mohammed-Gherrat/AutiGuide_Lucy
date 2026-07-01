@@ -1112,3 +1112,39 @@ textarea:focus-visible {
         transition-duration: 0.001ms !important;
     }
 }
+
+.markdown-body {
+    background: transparent !important;
+    color: inherit !important;
+    font: inherit !important;
+    padding: 0;
+}
+
+/* This stops GitHub from forcing its own dark mode background colors */
+.markdown-body::before,
+.markdown-body::after {
+    background: transparent !important;
+}
+
+.markdown-body p:first-child {
+    margin-top: 0;
+}
+
+.markdown-body p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-body pre {
+    border-radius: 10px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.markdown-body code {
+    font-size: .9rem;
+}
+
+.markdown-body table {
+    display: block;
+    overflow-x: auto;
+}

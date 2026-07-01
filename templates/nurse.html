@@ -1,70 +1,315 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AutiGuide Nurse Mode - conversational AI support for caregivers of children with Autism Spectrum Disorder.">
     <title>AutiGuide — Nurse Mode</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
-    <header>
-        <a href="/">&larr; Back to AutiGuide</a>
-        <h1>Nurse Mode</h1>
-        <p class="disclaimer">
-        Nurse Mode uses AI to rephrase our knowledge base in a conversational way.
-        It is not medical advice — always consult a professional for urgent concerns.
-        </p>
-    </header>
+    <link rel="stylesheet" href="/static/style.css">
 
-    <main>
-        <div id="chat-window"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
 
-        <form id="chat-form">
-        <input type="text" id="chat-input" placeholder="Ask Nurse Mode a question..." autocomplete="off" />
-        <button type="submit">Send</button>
-        </form>
-    </main>
+    <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <button id="sidebar-overlay" class="sidebar-overlay" aria-label="Close navigation" onclick="closeSidebar()"></button>
+
+        <aside id="sidebar" class="sidebar">
+            <div class="brand">
+                <div class="brand-logo" aria-hidden="true">A</div>
+                <div class="brand-copy">
+                    <h1>AutiGuide</h1>
+                    <p>Nurse Mode</p>
+                </div>
+            </div>
+
+            <div class="sidebar-scroll">
+                <a href="{{ url_for('home') }}">
+                    <button>← Back to AutiGuide</button>
+                </a>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="notice-card">
+                    <span class="notice-mark" aria-hidden="true">i</span>
+                    <p>
+                        <strong>AI-assisted, not medical advice</strong>
+                        Nurse Mode rephrases our verified knowledge base using a local AI model.
+                        It does not replace doctors, therapists or emergency services.
+                    </p>
+                </div>
+
+                <button class="new-chat-button" onclick="resetChat()">
+                    New conversation
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-panel">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="mobile-menu-button" onclick="openSidebar()" aria-label="Open navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <div class="conversation-info">
+                        <div class="conversation-title">
+                            <span class="status-dot" aria-hidden="true"></span>
+                            <h2>Nurse Lucy</h2>
+                        </div>
+                        <p>Conversational mode — grounded in AutiGuide's knowledge base</p>
+                    </div>
+                </div>
+
+                <a href="/">
+                    <button class="new-chat-button">💬 Retrieval Mode</button>
+                </a>
+            </header>
+
+            <section class="chat-layout">
+                <div id="chat-box" class="chat-box" aria-live="polite">
+                    <div class="message-row bot-row">
+                        <div class="avatar bot-avatar" aria-hidden="true">N</div>
+
+                        <article class="message bot-message">
+                            <div class="message-meta">
+                                <span class="category">Nurse Mode</span>
+                                <span class="risk risk-low">General</span>
+                            </div>
+
+                            <p>
+                                Hi, I'm Lucy. Ask me anything about caring for your child, and I'll
+                                answer conversationally, grounded in AutiGuide's verified knowledge base.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="composer-block">
+                    <div class="composer">
+                        <textarea id="user-input" rows="1" maxlength="800" placeholder="Ask Nurse Mode a question..." aria-label="Message Nurse Mode" autocomplete="off"></textarea>
+
+                        <button id="send-button" class="send-button" onclick="sendMessage()" aria-label="Send message">
+                            <span aria-hidden="true">↑</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script>
-        const chatWindow = document.getElementById("chat-window");
-        const chatForm = document.getElementById("chat-form");
-        const chatInput = document.getElementById("chat-input");
+        const chatBox = document.getElementById("chat-box");
+        const userInput = document.getElementById("user-input");
+        const sendButton = document.getElementById("send-button");
+        const sidebar = document.getElementById("sidebar");
+        const sidebarOverlay = document.getElementById("sidebar-overlay");
 
-        function addMessage(text, sender) {
-        const bubble = document.createElement("div");
-        bubble.className = `bubble ${sender}`;
-        bubble.textContent = text;
-        chatWindow.appendChild(bubble);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
+        let requestInProgress = false;
+
+        function escapeHTML(text) {
+            const div = document.createElement("div");
+            div.innerText = String(text ?? "");
+            return div.innerHTML;
         }
 
-        chatForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const message = chatInput.value.trim();
-        if (!message) return;
+        //create and display one user or nurse message
+        // Replace your existing addMessage function with this whole block:
+        function addMessage(sender, data) {
+            const row = document.createElement("div");
+            row.className = `message-row ${sender === "user" ? "user-row" : "bot-row"}`;
 
-        addMessage(message, "user");
-        chatInput.value = "";
+            if (sender === "user") {
+                row.innerHTML = `
+                    <article class="message user-message">
+                        <div class="markdown-body">
+                            ${DOMPurify.sanitize(marked.parse(data))} 
+                        </div>
+                    </article>
+                    <div class="avatar user-avatar" aria-hidden="true">You</div>
+                `;
+            } else {
+                // === THIS IS THE UPDATED ELSE BLOCK ===
+                const answer = data.answer || "";
+                let tagHTML = "";
+                if (data.grounded === false) {
+                    tagHTML = `<span class="risk risk-medium">No match found</span>`;
+                } else if (data.llm_used === false) {
+                    tagHTML = `<span class="risk risk-medium">AI unavailable — raw answer</span>`;
+                } else {
+                    tagHTML = `<span class="risk risk-low">Nurse Mode</span>`;
+                }
 
-        const typing = document.createElement("div");
-        typing.className = "bubble nurse typing";
-        typing.textContent = "Nurse is typing...";
-        chatWindow.appendChild(typing);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
+                row.innerHTML = `
+                    <div class="avatar bot-avatar" aria-hidden="true">N</div>
 
-        try {
-            const res = await fetch("/nurse_chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message }),
-            });
-            const data = await res.json();
-            typing.remove();
-            addMessage(data.answer, "nurse");
-        } catch (err) {
-            typing.remove();
-            addMessage("Something went wrong reaching Nurse Mode. Is LM Studio running?", "nurse");
+                    <article class="message bot-message">
+                        <div class="message-meta">
+                            <span class="category">Nurse Lucy</span>
+                            ${tagHTML}
+                        </div>
+                        <div class="markdown-body">
+                            ${DOMPurify.sanitize(marked.parse(answer))}
+                        </div>
+                    </article>
+                `;
+                // === END OF THE UPDATED ELSE BLOCK ===
+            }
+
+            chatBox.appendChild(row);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
+
+        function showTyping() {
+            const row = document.createElement("div");
+            row.className = "message-row bot-row";
+            row.id = "typing-message";
+
+            row.innerHTML = `
+                <div class="avatar bot-avatar" aria-hidden="true">N</div>
+                <article class="message bot-message typing-message">
+                    <div class="typing-dots" aria-label="Nurse is thinking">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </article>
+            `;
+
+            chatBox.appendChild(row);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function removeTyping() {
+            document.getElementById("typing-message")?.remove();
+        }
+
+        function setInputState(disabled) {
+            requestInProgress = disabled;
+            userInput.disabled = disabled;
+            sendButton.disabled = disabled;
+        }
+
+        function resizeInput() {
+            userInput.style.height = "auto";
+            userInput.style.height = `${Math.min(userInput.scrollHeight, 150)}px`;
+        }
+
+        //send the current message to Flask's /nurse_chat route, which calls nurse.py
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message || requestInProgress) return;
+
+            addMessage("user", message);
+
+            userInput.value = "";
+            resizeInput();
+            setInputState(true);
+            showTyping();
+            closeSidebar();
+
+            try {
+                const response = await fetch("/nurse_chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message })
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({}));
+                    removeTyping();
+                    addMessage("bot", {
+                        answer: errData.answer || "Something went wrong. Please try again.",
+                        grounded: false
+                    });
+                    return;
+                }
+
+                const data = await response.json();
+                removeTyping();
+                addMessage("bot", data);
+
+            } catch (error) {
+                removeTyping();
+                addMessage("bot", {
+                    answer: "I could not connect to the server. Please check that Flask and LM Studio are running.",
+                    grounded: false
+                });
+                console.error("Nurse Mode error:", error);
+            } finally {
+                setInputState(false);
+                userInput.focus();
+            }
+        }
+
+        //clear the server session (shared /reset route also clears nurse_history)
+        // Find this function in your script and update it to look like this:
+        async function resetChat() {
+            if (requestInProgress) return;
+            setInputState(true);
+
+            try {
+                const response = await fetch("/reset", { method: "POST" });
+                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                await response.json();
+
+                // === REPLACE OLD innerHTML STUFF WITH THIS ===
+                // 1. Cleanly clear out old messages from the DOM
+                while (chatBox.firstChild) {
+                    chatBox.removeChild(chatBox.firstChild);
+                }
+
+                // 2. Safely re-add your clean starting message using your function
+                addMessage("bot", {
+                    answer: "Conversation reset. Ask me anything, whenever you're ready.",
+                    grounded: true
+                });
+                // ============================================
+
+                closeSidebar();
+            } catch (error) {
+                addMessage("bot", {
+                    answer: "The conversation could not be reset. Please try again.",
+                    grounded: false
+                });
+                console.error("Reset error:", error);
+            } finally {
+                setInputState(false);
+                userInput.focus();
+            }
+        }
+
+        function openSidebar() {
+            sidebar.classList.add("is-open");
+            sidebarOverlay.classList.add("is-visible");
+            document.body.classList.add("sidebar-open");
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove("is-open");
+            sidebarOverlay.classList.remove("is-visible");
+            document.body.classList.remove("sidebar-open");
+        }
+
+        userInput.addEventListener("input", resizeInput);
+
+        userInput.addEventListener("keydown", event => {
+            if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
         });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") closeSidebar();
+        });
+
+        userInput.focus();
     </script>
 </body>
 </html>
