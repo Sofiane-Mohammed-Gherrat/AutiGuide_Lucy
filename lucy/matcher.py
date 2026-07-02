@@ -3,6 +3,10 @@ from typing import List, Dict, Any
 from sklearn.metrics.pairwise import cosine_similarity
 from .preprocessing import preprocess
 
+# ---- Configuring the number of matches to pull and compare 
+TOP_K = 6
+
+
 def find_best_matches_for_segments(
     flattened_segments: List[Dict[str, Any]],
     vectorizer,
@@ -17,7 +21,9 @@ def find_best_matches_for_segments(
         # CRITICAL FIX 1: Variables MUST reset to defaults for EVERY single segment row
         best_filtered_match = None
         fallback_match = None
-        highest_score = -1.0
+
+        best_final_score = -1.0      # Used for ranking
+        best_cosine_score = -1.0     # Optional: keep original cosine score
         
         text_to_match = segment.get('reformulated_question', '')
         # 🌟 FIXED: Pull the intent assigned strictly to THIS segment
@@ -32,19 +38,22 @@ def find_best_matches_for_segments(
         similarity_scores = cosine_similarity(query_vector, knowledge_vectors)[0]
         
         # 3. Get indices of the top 3 highest scores
-        top_3_indices = np.argsort(similarity_scores)[-3:][::-1]
+        top_indices = np.argsort(similarity_scores)[-TOP_K:][::-1]
         
         # 4. Iterate through top 3 candidates to apply the Intent Filter
-        for idx in top_3_indices:
+        for idx in top_indices:
             score = float(similarity_scores[idx])
             candidate_kb = knowledge_base[idx]
             
             if score < score_threshold:
                 continue
+
+            fallback_cosine_score = -1.0
                 
             if fallback_match is None:
                 fallback_match = candidate_kb
-                highest_score = score
+                fallback_cosine_score = score
+
             
             # Extract KB fields
             kb_category = str(candidate_kb.get('category', '')).lower().strip()
@@ -67,18 +76,24 @@ def find_best_matches_for_segments(
                 llm_intent in kb_title or
                 llm_intent in kb_all_context
             )
+            final_score = score
 
-            # Strict Filter Condition
-            if category_match and intent_match:
+            if score >= 0.25:
+                if category_match:
+                    final_score += 0.10
+
+                if intent_match:
+                    final_score += 0.15
+
+                if llm_intent and llm_intent in kb_title:
+                    final_score += 0.05
+
+            # Keep the highest-ranked candidate
+            if final_score > best_final_score:
+                best_final_score = final_score
+                best_cosine_score = score
                 best_filtered_match = candidate_kb
-                highest_score = score
-                break  
-                
-            # Lenient Filter Condition
-            elif category_match and score > 0.25:
-                if best_filtered_match is None or score > highest_score:
-                    best_filtered_match = candidate_kb
-                    highest_score = score
+
 
         # CRITICAL FIX 2: Rebuild a brand-new dict explicitly instead of shallow copying
         matched_segment = {
@@ -91,11 +106,13 @@ def find_best_matches_for_segments(
         
         if best_filtered_match:
             matched_segment['matched_knowledge'] = best_filtered_match
-            matched_segment['match_score'] = highest_score
+            matched_segment['match_score'] = best_cosine_score
+            matched_segment['ranking_score'] = best_final_score
             matched_segment['filter_status'] = "Verified by Intent Filter"
         elif fallback_match:
             matched_segment['matched_knowledge'] = fallback_match
-            matched_segment['match_score'] = highest_score
+            matched_segment["match_score"] = fallback_cosine_score
+            matched_segment['ranking_score'] = best_final_score
             matched_segment['filter_status'] = "Fallback (Filter Unmatched)"
         else:
             matched_segment['matched_knowledge'] = None
