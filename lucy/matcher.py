@@ -22,6 +22,8 @@ def find_best_matches_for_segments(
         best_filtered_match = None
         fallback_match = None
 
+        fallback_cosine_score = -1.0
+
         best_final_score = -1.0      # Used for ranking
         best_cosine_score = -1.0     # Optional: keep original cosine score
         
@@ -40,6 +42,12 @@ def find_best_matches_for_segments(
         # 3. Get indices of the top 3 highest scores
         top_indices = np.argsort(similarity_scores)[-TOP_K:][::-1]
         
+        for idx in top_indices:
+            print(
+                knowledge_base[idx]["title"],
+                similarity_scores[idx]
+            )
+
         # 4. Iterate through top 3 candidates to apply the Intent Filter
         for idx in top_indices:
             score = float(similarity_scores[idx])
@@ -48,7 +56,6 @@ def find_best_matches_for_segments(
             if score < score_threshold:
                 continue
 
-            fallback_cosine_score = -1.0
                 
             if fallback_match is None:
                 fallback_match = candidate_kb
@@ -78,7 +85,7 @@ def find_best_matches_for_segments(
             )
             final_score = score
 
-            if score >= 0.25:
+            if score >= 0.20:
                 if category_match:
                     final_score += 0.10
 
@@ -87,7 +94,12 @@ def find_best_matches_for_segments(
 
                 if llm_intent and llm_intent in kb_title:
                     final_score += 0.05
-
+            print("=" * 60)
+            print(candidate_kb["title"])
+            print("Cosine :", score)
+            print("Category:", category_match)
+            print("Intent :", intent_match)
+            print("Final :", final_score)
             # Keep the highest-ranked candidate
             if final_score > best_final_score:
                 best_final_score = final_score

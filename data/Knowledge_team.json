@@ -1,6 +1,6 @@
 [
     {
-        "id": "BEH001",
+        "id": "BH001",
         "category": "Behaviour",
         "subcategory": "Meltdowns",
         "intent": "Definition",
@@ -13,7 +13,7 @@
         "answer": "A sensory meltdown occurs when an autistic individual becomes overwhelmed by sensory, emotional, or situational input beyond their capacity to cope. Unlike a tantrum, it is not goal-directed — the child is not trying to get something. It can manifest as crying, screaming, hitting, or shutting down completely. The person typically has little or no control over their response during this time"
     },
     {
-        "id": "BEH002",
+        "id": "BH002",
         "category": "Behaviour",
         "subcategory": "Meltdowns",
         "intent": "Advice",
@@ -390,5 +390,538 @@
         "my child avoids other children"
         ],
         "answer": "Preferring solitary play is common in autistic children and is not inherently a problem. Autistic individuals often find social interaction cognitively and sensorially demanding, and solitary play provides restoration and genuine enjoyment. The question to ask is not 'does my child play alone?' but 'is my child distressed by their social situation?' If the child is content playing alone and has ways to connect with others when they choose to, this is a valid social style. Concerns arise when the child wants to connect with peers but does not know how — in that case, structured social skills support or facilitated play groups may help. Never force socialisation as it can increase anxiety and aversion."
+    },
+    {
+        "id": "AI001",
+        "category": "Autism Information",
+        "subcategory": "Autism definition",
+        "intent": "Definition",
+        "title": "What is autism?",
+        "search_text": [
+            "what is autism",
+            "define autism",
+            "meaning of autism spectrum disorder"
+        ],
+        "answer": "Autism, or Autism Spectrum Disorder (ASD), is a neurodevelopmental condition that affects how a person communicates, interacts socially, and processes sensory information. It is present from early childhood and is lifelong, though its impact on daily life varies widely from person to person. Autism is not an illness or something caused by parenting — it reflects a different way the brain develops and processes the world."
+    },
+    {
+        "id": "AI002",
+        "category": "Autism Information",
+        "subcategory": "Autism spectrum",
+        "intent": "Explanation",
+        "title": "Why is autism called a spectrum?",
+        "search_text": [
+            "why spectrum",
+            "what does spectrum mean in autism",
+            "range of autism"
+        ],
+        "answer": "Autism is called a spectrum because it presents very differently from one person to another, both in the traits shown and their intensity. Two autistic children can differ enormously — one may be non-speaking and need significant daily support, while another may speak fluently and need support mainly with social situations or sensory sensitivities. The spectrum reflects differences in communication style, sensory processing, and support needs, rather than a single fixed set of traits or a scale from 'mild' to 'severe.'"
+    },
+    {
+        "id": "AI003",
+        "category": "Autism Information",
+        "subcategory": "Autism signs",
+        "intent": "Information",
+        "title": "What are common signs of autism?",
+        "search_text": [
+            "signs of autism",
+            "symptoms of autism in children",
+            "how to tell if my child is autistic"
+        ],
+        "answer": "Common early signs include delayed or unusual speech development, limited eye contact, strong preference for routines, intense or narrow interests, repetitive movements (such as hand-flapping or rocking), and sensitivity to sounds, textures, or lights. Some children also have difficulty understanding social cues or prefer to play alone. These signs vary a lot between individuals, and having one or two traits does not necessarily mean a child is autistic — a proper assessment by a qualified professional is needed for a diagnosis."
+    },
+    {
+        "id": "AI004",
+        "category": "Autism Information",
+        "subcategory": "Causes of autism",
+        "intent": "Explanation",
+        "title": "What causes autism?",
+        "search_text": [
+            "what causes autism",
+            "why does autism happen",
+            "is autism genetic"
+        ],
+        "answer": "The exact cause of autism is not fully understood, but research points to a strong genetic component combined with certain prenatal and early developmental factors that influence brain development. Autism is not caused by parenting style, emotional upbringing, or trauma. It is also important to note that scientific research has consistently found no link between vaccines and autism, despite this being a persistent myth."
+    },
+    {
+        "id": "AI005",
+        "category": "Autism Information",
+        "subcategory": "Early intervention",
+        "intent": "Explanation",
+        "title": "Why is early intervention important?",
+        "search_text": [
+            "importance of early intervention",
+            "why start therapy early",
+            "benefits of early autism support"
+        ],
+        "answer": "Early intervention takes advantage of the brain's high plasticity in the first years of life, when new skills — communication, social interaction, and self-regulation — are most readily learned. Starting support early can improve long-term outcomes in language development, adaptive skills, and independence. Even if a formal diagnosis is delayed, caregivers can begin supportive strategies at home as soon as signs are noticed, rather than waiting for an official assessment."
+    },
+    {
+        "id": "AI006",
+        "category": "Autism Information",
+        "subcategory": "Lifelong nature of autism",
+        "intent": "Explanation",
+        "title": "Can autism be cured?",
+        "search_text": [
+            "is there a cure for autism",
+            "can you cure autism",
+            "does autism go away"
+        ],
+        "answer": "Autism is not a disease and cannot be 'cured' — it is a lifelong difference in neurological development. The goal of therapy and support is not to eliminate autism but to help the individual build communication, social, and coping skills so they can thrive and live as independently and happily as possible. Be cautious of any product or program that claims to 'cure' autism, as these claims are not supported by scientific evidence and can sometimes be harmful."
+    },
+    {
+        "id": "BEH002",
+        "category": "Behavioural Management",
+        "subcategory": "Meltdown response",
+        "intent": "Response strategy",
+        "title": "What should I do during a meltdown?",
+        "search_text": [
+            "how to handle a meltdown",
+            "what to do when child is melting down",
+            "responding to autism meltdown"
+        ],
+        "answer": "During a meltdown, prioritize safety first — move the child away from hazards rather than trying to physically restrain them. Reduce sensory input by dimming lights, lowering noise, or moving to a quieter space, and avoid talking too much, giving instructions, or trying to reason with them in the moment, since their capacity to process language is reduced. Stay calm and nearby without crowding them, and wait for the intensity to pass before addressing what happened."
+    },
+    {
+        "id": "BEH003",
+        "category": "Behavioural Management",
+        "subcategory": "Meltdown prevention",
+        "intent": "Prevention strategy",
+        "title": "How can I prevent meltdowns?",
+        "search_text": [
+            "prevent meltdowns",
+            "avoid autism meltdowns",
+            "reduce meltdown frequency"
+        ],
+        "answer": "Meltdowns often build up from accumulated stress, so prevention focuses on identifying and reducing known triggers, such as sensory overload, unexpected changes, hunger, or fatigue. Keeping a simple log of what happened before a meltdown can help you spot patterns over time. Predictable routines, visual schedules, advance warning before transitions, and regular breaks in low-stimulation spaces can all lower the chances of a child becoming overwhelmed."
+    },
+    {
+        "id": "BEH004",
+        "category": "Behavioural Management",
+        "subcategory": "Sensory processing",
+        "intent": "Definition",
+        "title": "What is sensory overload?",
+        "search_text": [
+            "what is sensory overload",
+            "define sensory overload",
+            "too much sensory input"
+        ],
+        "answer": "Sensory overload happens when the brain receives more sensory information — sounds, lights, textures, smells, or movement — than it can process at once. Many autistic individuals have heightened sensitivity to sensory input, so environments that seem normal to others, like a crowded mall or a noisy classroom, can feel overwhelming. Signs include covering ears, avoiding eye contact, agitation, or trying to leave the environment, and if unaddressed it can escalate into a meltdown."
+    },
+    {
+        "id": "BEH005",
+        "category": "Behavioural Management",
+        "subcategory": "Aggressive behaviour",
+        "intent": "Response strategy",
+        "title": "My child hits or bites other people. What should I do?",
+        "search_text": [
+            "child hits others",
+            "child bites people",
+            "aggressive autism behaviour"
+        ],
+        "answer": "Aggressive behaviour is usually a form of communication — frustration, sensory overwhelm, or an inability to express a need — rather than intentional harm. In the moment, calmly and safely intervene to protect everyone involved, then once calm, try to identify what triggered the behaviour. Working with a behavioural therapist can help identify the underlying function of the behaviour and teach alternative ways to communicate the same need; if aggression is frequent or intense, professional guidance is strongly recommended."
+    },
+    {
+        "id": "BEH006",
+        "category": "Behavioural Management",
+        "subcategory": "Self-injury",
+        "intent": "Response strategy",
+        "title": "My child hurts themselves. How should I respond?",
+        "search_text": [
+            "child self harm autism",
+            "self-injurious behaviour",
+            "child hits themselves"
+        ],
+        "answer": "Self-injurious behaviour, such as head-banging or biting oneself, is often linked to sensory needs, pain, frustration, or an inability to communicate distress. Prioritize immediate physical safety, for example by gently blocking the action or offering a safer sensory alternative, and remain calm rather than reacting with alarm. Because self-injury can also signal an underlying medical issue (like pain) or need professional behavioural assessment, it's important to consult a doctor or behavioural specialist, especially if it happens often or causes injury."
+    },
+    {
+        "id": "BEH007",
+        "category": "Behavioural Management",
+        "subcategory": "Stimming",
+        "intent": "Definition",
+        "title": "What is stimming?",
+        "search_text": [
+            "what is stimming",
+            "define stimming",
+            "repetitive movements autism"
+        ],
+        "answer": "Stimming (self-stimulatory behaviour) refers to repetitive movements or sounds, such as hand-flapping, rocking, spinning, or repeating words, that many autistic individuals use to self-regulate. It can help manage sensory input, express emotions like excitement or anxiety, or provide comfort. Stimming is generally not harmful and should not be suppressed unless it poses a safety risk — instead, caregivers can focus on ensuring it happens in a safe way and in appropriate settings."
+    },
+    {
+        "id": "BEH008",
+        "category": "Behavioural Management",
+        "subcategory": "Transitions and routines",
+        "intent": "Support strategy",
+        "title": "My child becomes upset when routines change. How can I help?",
+        "search_text": [
+            "child upset routine change",
+            "difficulty with transitions",
+            "resistance to change autism"
+        ],
+        "answer": "Many autistic children rely on routines because predictability makes the world feel safer and more manageable. When change is necessary, give advance warning using visual schedules, countdowns, or simple verbal preparation ('In 10 minutes, we will leave for school'). Introducing small, gradual changes rather than sudden ones, and using consistent transition cues like a timer or a specific phrase, can also make transitions easier to handle over time."
+    },
+    {
+        "id": "BEH009",
+        "category": "Behavioural Management",
+        "subcategory": "Sleep",
+        "intent": "Support strategy",
+        "title": "How can I help my autistic child sleep?",
+        "search_text": [
+            "autism sleep problems",
+            "child won't sleep autism",
+            "improve sleep autistic child"
+        ],
+        "answer": "Sleep difficulties are common in autistic children and can stem from sensory sensitivities, anxiety, or differences in melatonin regulation. A consistent bedtime routine, a dark and quiet sleep environment, and limiting screen time before bed can help. Weighted blankets or specific textures may provide comfort for some children, and if sleep problems persist and significantly affect daily functioning, a doctor can assess for underlying causes and possible interventions."
+    },
+    {
+        "id": "BEH010",
+        "category": "Behavioural Management",
+        "subcategory": "Wandering / elopement",
+        "intent": "Prevention strategy",
+        "title": "How can I prevent my child from wandering?",
+        "search_text": [
+            "autism wandering",
+            "child runs away autism",
+            "prevent elopement autism"
+        ],
+        "answer": "Wandering, or elopement, is a significant safety concern for many autistic children, who may leave a safe area without awareness of danger. Home safety measures such as door alarms, secure locks, and fencing can reduce risk, along with teaching safety skills like swimming (since drowning is a leading cause of wandering-related injury) and identification tools such as a medical ID bracelet. Informing neighbours, schools, and local authorities in advance can also help ensure a faster, safer response if wandering occurs."
+    },
+    {
+        "id": "BEH011",
+        "category": "Behavioural Management",
+        "subcategory": "Communication frustration",
+        "intent": "Support strategy",
+        "title": "My child becomes upset because they cannot communicate. What can I do?",
+        "search_text": [
+            "child frustrated can't communicate",
+            "communication frustration autism",
+            "nonverbal child upset"
+        ],
+        "answer": "Communication frustration is one of the most common triggers for distress in autistic children, especially those who are non-speaking or have limited language. Introducing alternative communication methods — such as picture exchange systems, sign language, or AAC (Augmentative and Alternative Communication) devices — can give the child a reliable way to express needs and reduce frustration. A speech-language therapist can help identify the most suitable communication approach for your child's specific abilities."
+    },
+    {
+        "id": "THR001",
+        "category": "Therapy and Intervention",
+        "subcategory": "ABA",
+        "intent": "Definition",
+        "title": "What is ABA therapy?",
+        "search_text": [
+            "what is ABA",
+            "applied behaviour analysis",
+            "ABA therapy meaning"
+        ],
+        "answer": "Applied Behaviour Analysis (ABA) is a therapy approach based on learning principles, used to build helpful skills (like communication and self-care) and reduce behaviours that interfere with learning or safety, through structured reinforcement techniques. It is one of the most researched interventions for autism, though approaches and quality vary widely between providers. Modern, well-delivered ABA emphasizes the child's dignity, choice, and natural motivation rather than rigid compliance, so it's worth asking providers about their specific methods and philosophy."
+    },
+    {
+        "id": "THR002",
+        "category": "Therapy and Intervention",
+        "subcategory": "Speech therapy & AAC",
+        "intent": "Definition",
+        "title": "What is speech therapy and AAC?",
+        "search_text": [
+            "what is speech therapy",
+            "what is AAC",
+            "augmentative alternative communication"
+        ],
+        "answer": "Speech therapy helps individuals develop spoken language, understanding of language, and social communication skills, delivered by a licensed speech-language pathologist. AAC (Augmentative and Alternative Communication) refers to tools that support or replace spoken language, ranging from simple picture cards to speech-generating devices and tablet apps. AAC is not a last resort and does not prevent speech development — for many children it actually supports and encourages spoken language over time."
+    },
+    {
+        "id": "THR003",
+        "category": "Therapy and Intervention",
+        "subcategory": "Occupational therapy",
+        "intent": "Definition",
+        "title": "What is occupational therapy?",
+        "search_text": [
+            "what is occupational therapy",
+            "OT for autism",
+            "occupational therapy meaning"
+        ],
+        "answer": "Occupational therapy (OT) helps individuals develop the practical skills needed for daily life, such as fine motor skills, self-care (dressing, feeding), and sensory regulation. For autistic children, OT often includes sensory integration techniques to help them process and respond to sensory input more comfortably. An occupational therapist can also recommend home and classroom adaptations to reduce sensory stress and support independence."
+    },
+    {
+        "id": "THR004",
+        "category": "Therapy and Intervention",
+        "subcategory": "Choosing a therapist",
+        "intent": "Guidance",
+        "title": "How do I choose a trustworthy therapist?",
+        "search_text": [
+            "how to choose autism therapist",
+            "finding a good therapist",
+            "trustworthy autism provider"
+        ],
+        "answer": "Look for therapists with recognized professional qualifications and registration with the relevant Malaysian licensing body for their discipline (such as speech-language pathology, occupational therapy, or psychology). Ask about their experience with autism specifically, their therapeutic approach, and how they measure progress. Be cautious of any provider promising a 'cure' or guaranteed rapid results, and don't hesitate to ask for a trial session or references from other caregivers."
+    },
+    {
+        "id": "THR005",
+        "category": "Therapy and Intervention",
+        "subcategory": "Parent-mediated intervention",
+        "intent": "Guidance",
+        "title": "Can parents support therapy at home?",
+        "search_text": [
+            "parent-mediated therapy",
+            "support therapy at home",
+            "can parents do therapy"
+        ],
+        "answer": "Yes — parent involvement is one of the strongest predictors of positive outcomes in autism intervention, since children spend far more time at home than in formal therapy sessions. Many therapy approaches now include parent-mediated components, where caregivers are trained to reinforce specific communication or behavioural strategies during everyday routines like mealtimes and play. Ask your child's therapist for simple, specific techniques you can practice consistently at home between sessions."
+    },
+    {
+        "id": "DIET001",
+        "category": "Dietary Guidance",
+        "subcategory": "Picky eating",
+        "intent": "Support strategy",
+        "title": "My child is a picky eater. What should I do?",
+        "search_text": [
+            "picky eating autism",
+            "child won't eat certain foods",
+            "food selectivity autism"
+        ],
+        "answer": "Picky or selective eating is very common in autistic children and is often linked to sensory sensitivities around texture, smell, or appearance of food, rather than simple stubbornness. Gradual, pressure-free exposure to new foods — placing them on the plate without requiring the child to eat them — can help over time, alongside keeping mealtimes low-stress and predictable. If food selectivity is severe or limits nutrition significantly, a dietitian or feeding specialist can help build a safe, gradual expansion plan."
+    },
+    {
+        "id": "DIET002",
+        "category": "Dietary Guidance",
+        "subcategory": "Food refusal",
+        "intent": "Warning signs",
+        "title": "My child refuses to eat. When is it serious?",
+        "search_text": [
+            "child refuses to eat",
+            "food refusal serious",
+            "when to worry about eating"
+        ],
+        "answer": "Occasional food refusal is common, but it becomes a concern when the child's diet is limited to a very small number of foods, when weight loss or poor growth occurs, or when refusal leads to signs of nutritional deficiency such as low energy or frequent illness. Difficulty swallowing, gagging, or choking during meals should also be evaluated promptly. If any of these signs appear, consult a pediatrician or feeding specialist rather than managing it alone."
+    },
+    {
+        "id": "DIET003",
+        "category": "Dietary Guidance",
+        "subcategory": "Autism diets",
+        "intent": "Explanation",
+        "title": "Does diet cure autism?",
+        "search_text": [
+            "gluten free casein free diet autism",
+            "can diet cure autism",
+            "special diets for autism"
+        ],
+        "answer": "No diet has been scientifically proven to cure autism. Some caregivers report behavioural improvements from diets like gluten-free/casein-free, but research results are mixed and inconsistent, and such diets can risk nutritional gaps if not properly managed. Any significant dietary change should be discussed with a doctor or dietitian first, especially for a growing child, to ensure nutritional needs are still being met."
+    },
+    {
+        "id": "DIET004",
+        "category": "Dietary Guidance",
+        "subcategory": "Mealtime strategies",
+        "intent": "Support strategy",
+        "title": "How can I make mealtimes easier?",
+        "search_text": [
+            "easier mealtimes autism",
+            "mealtime tips autism",
+            "reduce mealtime stress"
+        ],
+        "answer": "Consistent mealtime routines — same time, same seat, same general structure — can make eating feel more predictable and less stressful for an autistic child. Reducing sensory distractions at the table, offering a small familiar food alongside new ones, and avoiding pressure or bargaining around eating can help keep mealtimes calmer. Involving the child in simple food preparation can also increase their comfort and willingness to try new foods."
+    },
+    {
+        "id": "DIET005",
+        "category": "Dietary Guidance",
+        "subcategory": "Supplements",
+        "intent": "Safety guidance",
+        "title": "Are autism supplements safe?",
+        "search_text": [
+            "autism supplements safe",
+            "vitamins for autism",
+            "supplements for autistic child"
+        ],
+        "answer": "Some supplements (like vitamin D or omega-3s) may be appropriate if a specific deficiency is identified, but many marketed 'autism supplements' lack strong scientific evidence and are not regulated for safety or accuracy of claims. High doses of certain vitamins or minerals can actually be harmful. Always consult a pediatrician before starting any supplement, and be skeptical of products claiming to treat or cure autism."
+    },
+    {
+        "id": "SCH001",
+        "category": "School and Social Support",
+        "subcategory": "School collaboration",
+        "intent": "Guidance",
+        "title": "How can I talk to my child's teacher?",
+        "search_text": [
+            "talk to teacher about autism",
+            "communicate with school",
+            "teacher collaboration autism"
+        ],
+        "answer": "Start by sharing clear, specific information about your child's strengths, triggers, and effective strategies, rather than general labels — for example, 'loud noises like the bell are difficult, headphones help' is more useful than 'he's autistic.' Request regular check-ins, whether through a communication book, messaging app, or short meetings, to stay updated on both challenges and progress. Approaching the relationship as a two-way partnership, where you and the teacher share observations, tends to work better than a one-directional request for accommodations."
+    },
+    {
+        "id": "SCH002",
+        "category": "School and Social Support",
+        "subcategory": "Classroom accommodations",
+        "intent": "Support strategy",
+        "title": "How can school reduce sensory stress?",
+        "search_text": [
+            "classroom sensory accommodations",
+            "reduce sensory stress school",
+            "sensory friendly classroom"
+        ],
+        "answer": "Simple accommodations can make a significant difference, such as allowing noise-cancelling headphones, offering a quiet corner or break space, reducing harsh fluorescent lighting where possible, and providing advance notice before loud events like fire drills or assemblies. Flexible seating away from high-traffic areas and consistent daily schedules also help reduce sensory and anxiety-related stress. These accommodations are often achievable with minimal cost and can be discussed directly with the teacher or school counselor."
+    },
+    {
+        "id": "SCH003",
+        "category": "School and Social Support",
+        "subcategory": "Social interaction",
+        "intent": "Support strategy",
+        "title": "How can I help my child make friends?",
+        "search_text": [
+            "autism child make friends",
+            "social skills autism",
+            "help child socialize"
+        ],
+        "answer": "Structured, shared-interest activities — such as clubs, art classes, or sports based on the child's specific interests — often provide easier, lower-pressure social opportunities than unstructured free play. Social skills groups run by therapists can also directly teach skills like turn-taking, reading social cues, and starting conversations, in a supportive setting. It helps to celebrate the child's own style of friendship rather than pushing them to socialize exactly like neurotypical peers."
+    },
+    {
+        "id": "SCH004",
+        "category": "School and Social Support",
+        "subcategory": "Bullying",
+        "intent": "Response strategy",
+        "title": "My autistic child is being bullied. What should I do?",
+        "search_text": [
+            "autistic child bullied",
+            "bullying at school autism",
+            "how to stop bullying"
+        ],
+        "answer": "Document specific incidents (dates, what happened, who was involved) and report them formally to the school, requesting a clear written plan of action rather than a verbal assurance. Autistic children may not always recognize or report bullying themselves, so check in directly and watch for signs like reluctance to go to school or changes in behaviour. If the school does not respond adequately, escalate to the school counselor, principal, or relevant education authorities, and consider involving a child psychologist to support your child emotionally."
+    },
+    {
+        "id": "SCH005",
+        "category": "School and Social Support",
+        "subcategory": "School refusal",
+        "intent": "Response strategy",
+        "title": "My child refuses to go to school. What can I do?",
+        "search_text": [
+            "child refuses school autism",
+            "school avoidance autism",
+            "won't go to school"
+        ],
+        "answer": "School refusal is often a sign of underlying distress — sensory overwhelm, bullying, academic frustration, or anxiety — rather than simple defiance, so it's important to gently investigate the cause rather than only addressing the refusal itself. Talking calmly with your child, and separately with the teacher or counselor, can help identify specific triggers at school. A gradual return plan, sometimes starting with shorter days or a modified schedule, combined with addressing the root cause, tends to work better than forcing full attendance immediately."
+    },
+    {
+        "id": "RES001",
+        "category": "Available Resources",
+        "subcategory": "Malaysia services",
+        "intent": "Resource information",
+        "title": "Where can I get autism support in Malaysia?",
+        "search_text": [
+            "autism support Malaysia",
+            "autism services Malaysia",
+            "where to get help autism Malaysia"
+        ],
+        "answer": "In Malaysia, support is available through government channels like the Jabatan Kebajikan Masyarakat (JKM), Ministry of Health child development clinics, and NGOs such as NASOM (National Autism Society of Malaysia) and MyAutisme. Private therapy centres offering speech, occupational, and behavioural therapy are also widely available in major cities like Kuala Lumpur, Penang, and Johor Bahru, though access can be more limited in rural areas. Registering with JKM as OKU (Orang Kurang Upaya) can also open access to subsidized services and financial aid."
+    },
+    {
+        "id": "RES002",
+        "category": "Available Resources",
+        "subcategory": "JKM registration",
+        "intent": "Definition",
+        "title": "What is JKM OKU registration?",
+        "search_text": [
+            "JKM OKU registration",
+            "what is OKU card",
+            "disability registration Malaysia"
+        ],
+        "answer": "JKM (Jabatan Kebajikan Masyarakat, the Social Welfare Department) OKU registration is the official process of registering a person with a disability, including autism, to receive an OKU card in Malaysia. This registration can provide access to financial assistance, tax reliefs for parents, discounts on certain services, and eligibility for government-run or subsidized therapy and education programs. Registration typically requires a medical assessment confirming the diagnosis, submitted through a JKM office or hospital."
+    },
+    {
+        "id": "RES003",
+        "category": "Available Resources",
+        "subcategory": "Access to services",
+        "intent": "Support strategy",
+        "title": "What if autism services are far away?",
+        "search_text": [
+            "no autism services nearby",
+            "rural autism support",
+            "services far away"
+        ],
+        "answer": "If in-person services are far away or limited, telehealth options for speech and occupational therapy have become increasingly available and can reduce travel burden. Parent-mediated intervention — where caregivers are trained (sometimes remotely) to deliver simple strategies at home — can also help bridge gaps between limited in-person sessions. Online caregiver communities and NGOs like NASOM sometimes offer remote consultations or resource guidance for families outside major cities."
+    },
+    {
+        "id": "RES004",
+        "category": "Available Resources",
+        "subcategory": "Caregiver support",
+        "intent": "Resource information",
+        "title": "Where can caregivers get emotional support?",
+        "search_text": [
+            "caregiver support autism",
+            "parent support group autism",
+            "emotional support for caregivers"
+        ],
+        "answer": "Caring for an autistic child can be demanding, and caregiver burnout is common, so seeking support is important and not a sign of failure. Parent support groups, both in-person (through NGOs like NASOM) and online communities, offer a space to share experiences with others who understand the journey. If stress becomes overwhelming, speaking with a counselor or psychologist can also provide valuable coping strategies and support."
+    },
+    {
+        "id": "RES005",
+        "category": "Available Resources",
+        "subcategory": "Chatbot limitations",
+        "intent": "Scope clarification",
+        "title": "Can AutiGuide diagnose autism?",
+        "search_text": [
+            "can chatbot diagnose autism",
+            "AutiGuide diagnosis",
+            "is this a diagnostic tool"
+        ],
+        "answer": "No — AutiGuide cannot diagnose autism. A formal diagnosis requires a comprehensive evaluation by a qualified professional, such as a developmental pediatrician, psychiatrist, or psychologist, using standardized assessment tools. AutiGuide is designed to provide general information and caregiving guidance; if you suspect your child may be autistic, please seek an assessment from a licensed professional or a Ministry of Health child development clinic."
+    },
+    {
+        "id": "RES006",
+        "category": "Available Resources",
+        "subcategory": "Emergency situations",
+        "intent": "Safety guidance",
+        "title": "When should I call emergency services?",
+        "search_text": [
+            "emergency situation autism",
+            "when to call ambulance",
+            "urgent help autism"
+        ],
+        "answer": "Call emergency services (999 in Malaysia) immediately if your child is at risk of serious physical harm to themselves or others, is missing (especially near water or roads), or is experiencing a medical emergency such as a severe injury or breathing difficulty. For urgent behavioural crises without immediate physical danger, contacting your child's therapist, a crisis helpline, or a hospital's emergency department for guidance is also appropriate. AutiGuide is not equipped to handle emergencies — always prioritize contacting emergency services directly in urgent situations."
+    },
+    {
+        "id": "RES007",
+        "category": "Available Resources",
+        "subcategory": "Autism assessment",
+        "intent": "Resource information",
+        "title": "How can I find an autism assessment in Malaysia?",
+        "search_text": [
+            "autism assessment Malaysia",
+            "where to get diagnosed",
+            "autism evaluation Malaysia"
+        ],
+        "answer": "Autism assessments in Malaysia are available through government hospital child development clinics (Klinik Kanak-Kanak Istimewa), certain Ministry of Health outpatient clinics, and private developmental pediatricians or psychologists. Your family doctor or pediatrician can provide a referral to a specialist for a formal evaluation. Waiting times at government facilities can be long, so some families choose private assessment for faster access, though at higher cost."
+    },
+    {
+        "id": "RES008",
+        "category": "Available Resources",
+        "subcategory": "JKM benefits",
+        "intent": "Resource information",
+        "title": "Can JKM support an autistic child?",
+        "search_text": [
+            "JKM benefits autism",
+            "JKM financial aid",
+            "government support autistic child"
+        ],
+        "answer": "Yes — once registered as OKU with JKM, families can access benefits such as monthly financial assistance for disabled children, tax reliefs for parents, discounted or free access to certain therapy and education programs, and priority access in some public services. JKM can also refer families to community-based rehabilitation programs and NGOs for additional support. Eligibility and available benefits can vary, so it's best to confirm current details directly with your nearest JKM office."
+    },
+    {
+        "id": "RES009",
+        "category": "Available Resources",
+        "subcategory": "Service accessibility",
+        "intent": "Support strategy",
+        "title": "Therapy is too expensive or has a long waiting list. What can I do?",
+        "search_text": [
+            "therapy too expensive",
+            "long waiting list therapy",
+            "cannot afford autism therapy"
+        ],
+        "answer": "While waiting for formal therapy, parent-mediated strategies learned from books, workshops, or brief consultations can help you support your child's development at home in the meantime. Government clinics and NGOs like NASOM sometimes offer subsidized or lower-cost services compared to private centres, and JKM's OKU registration can unlock financial assistance to offset costs. Some universities with speech-language pathology or psychology programs also run low-cost training clinics supervised by qualified staff, which can be a more affordable option."
+    },
+    {
+        "id": "RES010",
+        "category": "Available Resources",
+        "subcategory": "Scope of AutiGuide",
+        "intent": "Scope clarification",
+        "title": "What can and cannot AutiGuide do?",
+        "search_text": [
+            "what can AutiGuide do",
+            "AutiGuide capabilities",
+            "limitations of AutiGuide"
+        ],
+        "answer": "AutiGuide can provide general information about autism, practical caregiving strategies, and guidance on available resources and services in Malaysia. It cannot diagnose autism, replace professional medical or therapeutic advice, or handle emergencies — for these, please consult a qualified healthcare professional or contact emergency services directly. Think of AutiGuide as a supportive first point of information, not a substitute for professional care."
     }
 ]
